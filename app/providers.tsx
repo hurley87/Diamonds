@@ -8,6 +8,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <PrivyProvider
       appId={appId}
       config={{
+        loginMethods: ['wallet'],
         appearance: {
           theme: 'dark',
           walletList: ['coinbase_wallet'],
