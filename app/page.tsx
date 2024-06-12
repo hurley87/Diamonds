@@ -1,10 +1,12 @@
 'use client';
 import { usePrivy } from '@privy-io/react-auth';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { user, ready, login, logout, linkEmail } = usePrivy();
   const address = user?.wallet?.address;
+  const router = useRouter();
 
   if (!ready) {
     return <div>Loading...</div>;
@@ -16,7 +18,25 @@ export default function Home() {
     return `https://pay.coinbase.com/buy/one-click?appId=${APP_ID}&defaultAsset=ETH&defaultPaymentMethod=ACH_BANK_ACCOUNT&destinationWallets=[{"address":"${address}","blockchains":["base"]}]&fiatCurrency=usd&presetFiatAmount=25&quoteId=fund-wallet-button`;
   }
 
-  console.log('user', user);
+  const handlePurchase = async () => {
+    if (!user) return;
+
+    const body = JSON.stringify({
+      id: address,
+      email: user.email?.address,
+    });
+
+    const response = await fetch('/api/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+    const data = await response.json();
+
+    router.push(data.hosted_url);
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
@@ -42,6 +62,9 @@ export default function Home() {
             <button onClick={() => window.open(buildOneClickURL())}>
               Fund Wallet (Uses Real Money!)
             </button>
+          </div>
+          <div>
+            <button onClick={handlePurchase}>Make $1 Purchase</button>
           </div>
           <div>
             <button onClick={logout}>Logout</button>
