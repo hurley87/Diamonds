@@ -38,7 +38,14 @@ export async function POST(req: NextRequest) {
   const metadata = hookData.event.data.metadata;
   console.log('Metadata:', metadata);
 
-  //   use metadata to mint NFT
+  const eventType = hookData.event.type;
+  console.log('Event type:', eventType);
+
+  if (eventType === 'charge:confirmed') {
+    console.log('Charge confirmed');
+
+    //   use metadata to mint NFT
+  }
 
   // your code continues here ...
   return new Response('ok');
