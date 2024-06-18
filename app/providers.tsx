@@ -8,15 +8,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <PrivyProvider
       appId={appId}
       config={{
-        loginMethods: ['wallet'],
+        loginMethods: ['email'],
+        embeddedWallets: {
+          createOnLogin: 'users-without-wallets',
+        },
         appearance: {
           theme: 'dark',
           walletList: ['coinbase_wallet'],
-        },
-        externalWallets: {
-          coinbaseWallet: {
-            connectionOptions: 'smartWalletOnly',
-          },
         },
       }}
     >

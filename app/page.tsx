@@ -6,16 +6,11 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
   const { user, ready, login, logout, linkEmail } = usePrivy();
   const address = user?.wallet?.address;
+  const email = user?.email?.address;
   const router = useRouter();
 
   if (!ready) {
     return <div>Loading...</div>;
-  }
-
-  const APP_ID = process.env.NEXT_PUBLIC_COINBASE_APP_ID!;
-
-  function buildOneClickURL() {
-    return `https://pay.coinbase.com/buy/one-click?appId=${APP_ID}&defaultAsset=ETH&defaultPaymentMethod=ACH_BANK_ACCOUNT&destinationWallets=[{"address":"${address}","blockchains":["base"]}]&fiatCurrency=usd&presetFiatAmount=25&quoteId=fund-wallet-button`;
   }
 
   const handlePurchase = async () => {
@@ -23,7 +18,7 @@ export default function Home() {
 
     const body = JSON.stringify({
       id: address,
-      email: user.email?.address,
+      email,
     });
 
     const response = await fetch('/api/payment', {
@@ -55,14 +50,8 @@ export default function Home() {
               <button onClick={linkEmail}>Link Your Email</button>
             </div>
           ) : (
-            <div>{user.email.address}</div>
+            <div>{email}</div>
           )}
-
-          <div>
-            <button onClick={() => window.open(buildOneClickURL())}>
-              Fund Wallet (Uses Real Money!)
-            </button>
-          </div>
           <div>
             <button onClick={handlePurchase}>Make $1 Purchase</button>
           </div>

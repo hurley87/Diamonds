@@ -14,10 +14,9 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     name: 'Diamond',
     description: 'Cool description',
-    redirect_url: 'https://diamonds-eight.vercel.app/', //optional redirect URL
+    redirect_url: 'https://diamonds-eight.vercel.app/',
 
     metadata: {
-      //optional charge metadata
       id,
       email,
       address: '123 Satoshi Lane',
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const payload = {
     method: 'POST',
-    mode: 'cors' as RequestMode, // Correctly typed as RequestMode
+    mode: 'cors' as RequestMode,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
