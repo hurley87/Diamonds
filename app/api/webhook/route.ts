@@ -2,7 +2,6 @@ import { NextRequest } from 'next/server';
 import { createHmac } from 'crypto';
 
 export async function POST(req: NextRequest) {
-  console.log('Webhook req:', req);
   const body = await req.text();
 
   console.log('Webhook received:', body);
