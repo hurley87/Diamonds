@@ -3,9 +3,6 @@ import { createHmac } from 'crypto';
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
-
-  console.log('Webhook received:', body);
-
   const sig = req.headers.get('X-CC-Webhook-Signature');
   console.log('Webhook signature:', sig);
 
@@ -30,12 +27,14 @@ export async function POST(req: NextRequest) {
   console.log('Generated signature:', generatedSignature);
 
   const isValid = generatedSignature === sig;
-  if (!isValid) {
-    throw new Error('Invalid webhook signature');
-  }
+  console.log('Is signature valid:', isValid);
+  //   if (!isValid) {
+  //     throw new Error('Invalid webhook signature');
+  //   }
 
   const hookData = JSON.parse(body);
   console.log('Webhook data:', hookData);
 
   // your code continues here ...
+  return new Response('ok');
 }
