@@ -35,6 +35,11 @@ export async function POST(req: NextRequest) {
   const hookData = JSON.parse(body);
   console.log('Webhook data:', hookData);
 
+  const metadata = hookData.event.data.metadata;
+  console.log('Metadata:', metadata);
+
+  //   use metadata to mint NFT
+
   // your code continues here ...
   return new Response('ok');
 }
