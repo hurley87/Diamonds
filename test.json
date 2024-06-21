@@ -1,0 +1,36 @@
+{
+  "name": "4Collection",
+  "symbol": "4Collection",
+  "image": "https://gateway.irys.xyz/OdMV7ECHWxhBhW0T8cDMguEf5O1C8w-mXXsrVbXPe9Q",
+  "description": "Diamonds. Onchain. Forever.",
+  "attributes": [
+    {
+      "trait_type": "Color Grade",
+      "value": "D"
+    },
+    {
+      "trait_type": "Carat Weight",
+      "value": "1"
+    },
+    {
+      "trait_type": "Shape & Cutting Style",
+      "value": "Round Brilliant"
+    },
+    {
+      "trait_type": "Cut Grade",
+      "value": "Excellent"
+    },
+    {
+      "trait_type": "Polish",
+      "value": "Excellent"
+    },
+    {
+      "trait_type": "Symmetry",
+      "value": "Excellent"
+    },
+    {
+      "trait_type": "Fluorescence",
+      "value": "None"
+    }
+  ]
+}

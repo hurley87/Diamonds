@@ -1,29 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest): Promise<Response> {
-  const { id, email } = await req.json();
+  const { id, email, address, colorGrade, caratWeight } = await req.json();
 
   const url = 'https://api.commerce.coinbase.com/charges';
 
   const requestBody = {
     local_price: {
-      amount: '1', //price of charge
-      currency: 'USD', //currency
+      amount: '1',
+      currency: 'USD',
     },
     pricing_type: 'fixed_price',
 
     name: 'Diamond',
     description: 'Cool description',
-    redirect_url: 'https://diamonds-eight.vercel.app/',
+    redirect_url: 'https://diamonds-eight.vercel.app/thanks',
 
     metadata: {
       id,
       email,
-      address: '123 Satoshi Lane',
-      clarity: 'FL',
-      color: 'G',
-      carat: '1.0',
-      cut: 'ideal',
+      address,
+      colorGrade,
+      caratWeight,
     },
   };
 
