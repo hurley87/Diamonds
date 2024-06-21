@@ -55,6 +55,9 @@ export async function POST(req: NextRequest) {
   const metadata = hookData.event.data.metadata;
   console.log('Metadata:', metadata);
 
+  const code = hookData.event.data.code;
+  console.log('Code:', code);
+
   const eventType = hookData.event.type;
   console.log('Event type:', eventType);
 
@@ -95,6 +98,10 @@ export async function POST(req: NextRequest) {
         {
           trait_type: 'Fluorescence',
           value: 'None',
+        },
+        {
+          trait_type: 'Code',
+          value: code,
         },
       ],
     };
