@@ -119,4 +119,5 @@ export async function POST(req: NextRequest) {
       return new Response('error');
     }
   }
+  return new Response('ok');
 }
