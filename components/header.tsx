@@ -9,7 +9,9 @@ export const Header = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto flex justify-between p-6">
-      <h1 className="text-lg font-bold">4Collection</h1>
+      <Link href="/">
+        <h1 className="text-lg font-bold">4Collection</h1>
+      </Link>
       {user ? (
         <div className="flex items-center gap-2">
           <Link href={`/profile/${address}`}>

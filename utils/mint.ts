@@ -18,6 +18,21 @@ const walletClient = createWalletClient({
   transport: http('https://sepolia.base.org'),
 });
 
+export const getIrys = async () => {
+  const network = 'devnet';
+  const providerUrl = 'https://sepolia.base.org';
+  const token = 'base-eth';
+
+  const irys = new Irys({
+    network,
+    token,
+    key: process.env.PRIVATE_KEY,
+    config: { providerUrl },
+  });
+
+  return irys;
+};
+
 export async function mintNft(toAddress: string, uri: string) {
   try {
     const { request }: any = await publicClient.simulateContract({
@@ -50,17 +65,54 @@ export async function balanceOf(address: string) {
   }
 }
 
-export const getIrys = async () => {
-  const network = 'devnet';
-  const providerUrl = 'https://sepolia.base.org';
-  const token = 'base-eth';
+export async function tokenOfOwnerByIndex(address: string, index: number) {
+  try {
+    const tokenIdData = await publicClient.readContract({
+      address: contractAddress,
+      abi: contractAbi.abi,
+      functionName: 'tokenOfOwnerByIndex',
+      args: [address, index],
+    });
+    const tokenId: number = Number(tokenIdData);
+    return tokenId;
+  } catch (error) {
+    return error;
+  }
+}
 
-  const irys = new Irys({
-    network,
-    token,
-    key: process.env.PRIVATE_KEY,
-    config: { providerUrl },
-  });
+export async function getTokensOfOwner(address: string) {
+  try {
+    const balance = (await balanceOf(address)) as number;
+    const tokenIds = [];
 
-  return irys;
-};
+    for (let i = 0; i < balance; i++) {
+      const tokenId = await tokenOfOwnerByIndex(address, i);
+      tokenIds.push(tokenId);
+    }
+
+    return tokenIds;
+  } catch (error) {
+    console.error('Error fetching tokens: ', error);
+    return [];
+  }
+}
+
+export async function getUri(tokenId: number) {
+  try {
+    const uriData = await publicClient.readContract({
+      address: contractAddress,
+      abi: contractAbi.abi,
+      functionName: 'tokenURI',
+      args: [tokenId],
+    });
+    return uriData;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getDiamond(uri: string) {
+  const content = await fetch(uri);
+  const diamond = await content.json();
+  return diamond;
+}
