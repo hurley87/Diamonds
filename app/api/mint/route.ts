@@ -1,22 +1,6 @@
 import { NextRequest } from 'next/server';
 import { createHmac } from 'crypto';
-import Irys from '@irys/sdk';
-import { mintNft } from '@/utils/mint';
-
-const getIrys = async () => {
-  const network = 'devnet';
-  const providerUrl = 'https://sepolia.base.org';
-  const token = 'base-eth';
-
-  const irys = new Irys({
-    network,
-    token,
-    key: process.env.PRIVATE_KEY,
-    config: { providerUrl },
-  });
-
-  return irys;
-};
+import { mintNft, getIrys } from '@/utils/mint';
 
 export async function POST(req: NextRequest) {
   const body = await req.text();

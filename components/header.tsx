@@ -1,5 +1,6 @@
 'use client';
 import { usePrivy } from '@privy-io/react-auth';
+import Link from 'next/link';
 
 export const Header = () => {
   const { user, login, logout } = usePrivy();
@@ -11,7 +12,9 @@ export const Header = () => {
       <h1 className="text-lg font-bold">4Collection</h1>
       {user ? (
         <div className="flex items-center gap-2">
-          <div>{address}</div>
+          <Link href={`/profile/${address}`}>
+            <div>{address}</div>
+          </Link>
           <div>{email}</div>
           <button
             className="bg-white rounded-sm px-4 text-black"

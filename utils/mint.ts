@@ -1,8 +1,9 @@
 import { createWalletClient, http, createPublicClient, Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { baseSepolia } from 'viem/chains';
-import contractAbi from './FourCollect.json';
+import contractAbi from './DiamondCollection.json';
 const contractAddress = process.env.CONTRACT_ADDRESS as `0x`;
+import Irys from '@irys/sdk';
 
 const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}` as Hex);
 
@@ -40,7 +41,7 @@ export async function balanceOf(address: string) {
       address: contractAddress,
       abi: contractAbi.abi,
       functionName: 'balanceOf',
-      args: [address as `0x`, 0],
+      args: [address],
     });
     const balance: number = Number(balanceData);
     return balance;
@@ -48,3 +49,18 @@ export async function balanceOf(address: string) {
     return error;
   }
 }
+
+export const getIrys = async () => {
+  const network = 'devnet';
+  const providerUrl = 'https://sepolia.base.org';
+  const token = 'base-eth';
+
+  const irys = new Irys({
+    network,
+    token,
+    key: process.env.PRIVATE_KEY,
+    config: { providerUrl },
+  });
+
+  return irys;
+};
