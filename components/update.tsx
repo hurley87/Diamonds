@@ -59,6 +59,54 @@ export const Update = ({ code }: { code: string }) => {
     }
 
     const newAttributes = [
+      {
+        trait_type: 'Color Grade',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Color Grade'
+        ).value,
+      },
+      {
+        trait_type: 'Carat Weight',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Carat Weight'
+        ).value,
+      },
+      {
+        trait_type: 'Shape & Cutting Style',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Shape & Cutting Style'
+        ).value,
+      },
+      {
+        trait_type: 'Cut Grade',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Cut Grade'
+        ).value,
+      },
+      {
+        trait_type: 'Polish',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Polish'
+        ).value,
+      },
+      {
+        trait_type: 'Symmetry',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Symmetry'
+        ).value,
+      },
+      {
+        trait_type: 'Fluorescence',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Fluorescence'
+        ).value,
+      },
+      {
+        trait_type: 'Code',
+        value: diamond.attributes.find(
+          (attr: any) => attr.trait_type === 'Code'
+        ).value,
+      },
       { trait_type: 'GIA Number', value: giaNumber },
       { trait_type: 'GIA Date', value: giaDate },
       { trait_type: 'Measurements', value: measurements },
@@ -68,7 +116,7 @@ export const Update = ({ code }: { code: string }) => {
 
     const metadata = {
       ...diamond,
-      attributes: [...diamond.attributes, ...newAttributes],
+      attributes: newAttributes,
     };
 
     const body = JSON.stringify({

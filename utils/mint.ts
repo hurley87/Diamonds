@@ -112,7 +112,9 @@ export async function getUri(tokenId: number) {
 }
 
 export async function getDiamond(uri: string) {
-  const content = await fetch(uri);
+  const content = await fetch(uri, {
+    cache: 'no-store',
+  });
   const diamond = await content.json();
   return diamond;
 }
