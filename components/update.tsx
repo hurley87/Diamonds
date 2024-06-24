@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { getAccessToken } from '@privy-io/react-auth';
 
 export const Update = ({ code }: { code: string }) => {
   const uri = `https://gateway.irys.xyz/mutable/${code}`;
@@ -17,6 +18,27 @@ export const Update = ({ code }: { code: string }) => {
     const fetchDiamond = async () => {
       const response = await fetch(uri);
       const data = await response.json();
+      const attributes = data.attributes || [];
+      const giaNumber = attributes.find(
+        (attr: any) => attr.trait_type === 'GIA Number'
+      );
+      const giaDate = attributes.find(
+        (attr: any) => attr.trait_type === 'GIA Date'
+      );
+      const measurements = attributes.find(
+        (attr: any) => attr.trait_type === 'Measurements'
+      );
+      const certificate = attributes.find(
+        (attr: any) => attr.trait_type === 'Certificate'
+      );
+      const clarityGrade = attributes.find(
+        (attr: any) => attr.trait_type === 'Clarity Grade'
+      );
+      setGiaNumber(giaNumber?.value || '');
+      setGiaDate(giaDate?.value || '');
+      setMeasurements(measurements?.value || '');
+      setCertificate(certificate?.value || '');
+      setClarityGrade(clarityGrade?.value || 'IF');
       setDiamond(data);
     };
 
@@ -53,12 +75,14 @@ export const Update = ({ code }: { code: string }) => {
       code,
       metadata,
     });
+    const authToken = await getAccessToken();
 
     try {
       await fetch('/api/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
         },
         body,
       });
@@ -70,7 +94,7 @@ export const Update = ({ code }: { code: string }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 justify-center max-w-sm mx-auto">
+    <div className="flex flex-col gap-2 justify-center max-w-lg mx-auto">
       <div>
         <p>GIA Number</p>
         <input
@@ -100,7 +124,7 @@ export const Update = ({ code }: { code: string }) => {
         <input
           value={certificate}
           onChange={(e) => setCertificate(e.target.value)}
-          className="text-black"
+          className="text-black w-full"
         />
       </div>
       <div>
