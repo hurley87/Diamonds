@@ -1,5 +1,6 @@
 import { getDiamond, getUri } from '@/utils/mint';
 import Link from 'next/link';
+import { Burn } from './burn';
 
 export const Token = async ({ tokenId }: { tokenId: number }) => {
   const uri = (await getUri(tokenId)) as string;
@@ -34,7 +35,7 @@ export const Token = async ({ tokenId }: { tokenId: number }) => {
   );
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center gap-4">
       <h1>Diamond #{tokenId}</h1>
       <p>
         <img
@@ -47,7 +48,7 @@ export const Token = async ({ tokenId }: { tokenId: number }) => {
       <p>Carat Weight: {caratWeight.value}</p>
       <p>{uri}</p>
       {giaNumber && (
-        <div>
+        <div className="flex flex-col justify-center gap-4">
           <p>GIA Number: {giaNumber.value}</p>
           <p>GIA Date: {giaDate.value}</p>
           <p>Measurements: {measurements.value}</p>
@@ -56,8 +57,11 @@ export const Token = async ({ tokenId }: { tokenId: number }) => {
         </div>
       )}
       <Link href={`/update/${code}`}>
-        <button>Update</button>
+        <button className="bg-white rounded-sm px-4 text-black">Update</button>
       </Link>
+      <div>
+        <Burn tokenId={tokenId} />
+      </div>
     </div>
   );
 };

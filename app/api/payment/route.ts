@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest): Promise<Response> {
-  const { id, email, address, colorGrade, caratWeight } = await req.json();
+  const { id, colorGrade, caratWeight } = await req.json();
 
   const url = 'https://api.commerce.coinbase.com/charges';
 
@@ -18,8 +18,6 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     metadata: {
       id,
-      email,
-      address,
       colorGrade,
       caratWeight,
     },

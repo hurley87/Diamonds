@@ -1,34 +1,45 @@
 'use client';
-import { usePrivy } from '@privy-io/react-auth';
 import Link from 'next/link';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
 export const Header = () => {
-  const { user, login, logout } = usePrivy();
-  const email = user?.email?.address;
-  const address = user?.wallet?.address;
+  const account = useAccount();
+  const address = account.address;
+  const { disconnect } = useDisconnect();
+  const { connectors, connect } = useConnect();
 
   return (
     <div className="max-w-screen-2xl mx-auto flex justify-between p-6">
       <Link href="/">
         <h1 className="text-lg font-bold">4Collection</h1>
       </Link>
-      {user ? (
+      {address ? (
         <div className="flex items-center gap-2">
           <Link href={`/profile/${address}`}>
             <div>{address}</div>
           </Link>
-          <div>{email}</div>
           <button
             className="bg-white rounded-sm px-4 text-black"
-            onClick={logout}
+            type="button"
+            onClick={() => disconnect()}
           >
-            Logout
+            Disconnect
           </button>
         </div>
       ) : (
-        <button className="bg-white rounded-sm px-4 text-black" onClick={login}>
-          Login
-        </button>
+        <>
+          {connectors.map((connector) => (
+            <button
+              id={connector.id}
+              key={connector.uid}
+              onClick={() => connect({ connector })}
+              type="button"
+              className="bg-white rounded-sm px-4 text-black"
+            >
+              Connect
+            </button>
+          ))}
+        </>
       )}
     </div>
   );

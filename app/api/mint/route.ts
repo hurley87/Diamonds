@@ -5,14 +5,12 @@ import { mintNft, getIrys } from '@/utils/mint';
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get('X-CC-Webhook-Signature');
-  console.log('Webhook signature:', sig);
 
   if (!sig) {
     throw new Error('Coinbase signature missing from request headers');
   }
 
   const webhookSecret = process.env.COINBASE_WEBHOOK_SECRET;
-  console.log('Webhook secret:', webhookSecret);
 
   if (!webhookSecret) {
     throw new Error(
@@ -24,9 +22,6 @@ export async function POST(req: NextRequest) {
   hmac.update(body);
 
   const generatedSignature = hmac.digest('hex');
-
-  console.log('Generated signature:', generatedSignature);
-
   const isValid = generatedSignature === sig;
   console.log('Is signature valid:', isValid);
   //   if (!isValid) {
@@ -34,20 +29,11 @@ export async function POST(req: NextRequest) {
   //   }
 
   const hookData = JSON.parse(body);
-  console.log('Webhook data:', hookData);
-
   const metadata = hookData.event.data.metadata;
-  console.log('Metadata:', metadata);
-
   const code = hookData.event.data.code;
-  console.log('Code:', code);
-
   const eventType = hookData.event.type;
-  console.log('Event type:', eventType);
 
   if (eventType === 'charge:confirmed') {
-    console.log('Charge confirmed');
-
     const NFTmetadata = {
       name: '4Collection',
       symbol: '4Collection',
@@ -97,8 +83,6 @@ export async function POST(req: NextRequest) {
       console.log(`Data uploaded ==> https://gateway.irys.xyz/${receipt.id}`);
 
       const uri = `https://gateway.irys.xyz/mutable/${receipt.id}`;
-
-      console.log('Minting NFT with URI:', uri);
 
       const transaction = await mintNft(metadata.id, uri);
 
