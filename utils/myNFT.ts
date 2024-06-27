@@ -1,11 +1,17 @@
 export const myNFTABI = [
   {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'tokenId',
+        type: 'uint256',
+      },
+    ],
+    name: 'burn',
+    outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
-    inputs: [{ name: 'to', type: 'address' }],
-    name: 'safeMint',
-    outputs: [],
   },
 ] as const;
 
-export const myNFTAddress = '0x119Ea671030FBf79AB93b436D2E20af6ea469a19';
+export const myNFTAddress = '0x1f0826412A9D076700Da54153B833Cc8A33A73CC';

@@ -7,6 +7,7 @@ import { TransactButton } from './transact-button';
 import { myNFTABI, myNFTAddress } from '@/utils/myNFT';
 
 export const Burn = ({ tokenId }: { tokenId: number }) => {
+  console.log('Burn', tokenId);
   const account = useAccount();
   const { data: availableCapabilities } = useCapabilities({
     account: account.address,
@@ -19,9 +20,8 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
       capabilitiesForChain['paymasterService'].supported
     ) {
       const url =
-        process.env.PAYMASTER_PROXY_SERVER_URL ||
-        `${document.location.origin}/api/paymaster`;
-      console.log('PAYMASTER_PROXY_SERVER_URL', url);
+        'https://api.developer.coinbase.com/rpc/v1/base-sepolia/JxL6umPWXhkvl6FZLjobYH_t--UZbo7j';
+
       return {
         paymasterService: {
           url,
@@ -37,8 +37,8 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
         {
           address: myNFTAddress,
           abi: myNFTABI,
-          functionName: 'safeMint',
-          args: [account.address],
+          functionName: 'burn',
+          args: [tokenId],
         },
       ]}
       capabilities={capabilities}
