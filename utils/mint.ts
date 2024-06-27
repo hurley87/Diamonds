@@ -33,7 +33,7 @@ export const getIrys = async () => {
   return irys;
 };
 
-export async function mintNft(toAddress: string, uri: string) {
+export async function mintNft(toAddress: `0x${string}`, uri: string) {
   try {
     const { request }: any = await publicClient.simulateContract({
       account,
@@ -43,6 +43,16 @@ export async function mintNft(toAddress: string, uri: string) {
       args: [toAddress, uri],
     });
     const transaction = await walletClient.writeContract(request);
+
+    // send 0.0001 base-eth to toAddress from wallet
+    const hash = await walletClient.sendTransaction({
+      account,
+      to: toAddress,
+      value: BigInt(10000000000000),
+    });
+
+    console.log('Transaction hash: ', hash);
+
     return transaction;
   } catch (e) {
     console.error(e);
@@ -117,4 +127,21 @@ export async function getDiamond(uri: string) {
   });
   const diamond = await content.json();
   return diamond;
+}
+
+export async function burnNft(tokenId: number) {
+  try {
+    const { request }: any = await publicClient.simulateContract({
+      account,
+      address: contractAddress,
+      abi: contractAbi.abi,
+      functionName: 'burn',
+      args: [tokenId],
+    });
+    const transaction = await walletClient.writeContract(request);
+    return transaction;
+  } catch (e) {
+    console.error(e);
+    return 'Already burned';
+  }
 }
