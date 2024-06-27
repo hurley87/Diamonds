@@ -1,5 +1,6 @@
 import { getDiamond, getUri } from '@/utils/mint';
 import Link from 'next/link';
+import { Burn } from './burn';
 
 export const Token = async ({ tokenId }: { tokenId: number }) => {
   const uri = (await getUri(tokenId)) as string;
@@ -58,6 +59,7 @@ export const Token = async ({ tokenId }: { tokenId: number }) => {
       <Link href={`/update/${code}`}>
         <button>Update</button>
       </Link>
+      <Burn tokenId={tokenId} />
     </div>
   );
 };
