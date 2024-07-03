@@ -16,7 +16,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
 
   const publicClient = createPublicClient({
     chain: baseSepolia,
-    transport: http('https://sepolia.base.org'),
+    transport: http('https://base-sepolia-rpc.publicnode.com'),
   });
 
   const handleBurn = async () => {
