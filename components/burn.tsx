@@ -23,33 +23,40 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
     setIsBurning(true);
 
     try {
-      const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
-      const walletClient = await createWalletClient({
-        account,
-        chain: baseSepolia,
-        transport: custom(ethereumProvider),
+      const reponse = await fetch('/api/deposit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address: account }),
       });
+      const { hash } = await reponse.json();
 
-      console.log('walletClient: ', walletClient);
+      if (hash) {
+        const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
+        const walletClient = await createWalletClient({
+          account,
+          chain: baseSepolia,
+          transport: custom(ethereumProvider),
+        });
 
-      const { request }: any = await publicClient.simulateContract({
-        address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
-        abi: contractAbi.abi,
-        functionName: 'burn',
-        args: [tokenId],
-        account,
-      });
-      console.log('Request: ', request);
-      const hash = await walletClient.writeContract(request);
-      console.log('Transaction hash: ', hash);
+        const { request }: any = await publicClient.simulateContract({
+          address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
+          abi: contractAbi.abi,
+          functionName: 'burn',
+          args: [tokenId],
+          account,
+        });
 
-      const receipt = await publicClient.waitForTransactionReceipt({ hash });
+        const hash = await walletClient.writeContract(request);
 
-      console.log('Transaction receipt: ', receipt);
+        const receipt = await publicClient.waitForTransactionReceipt({ hash });
 
-      router.push('/');
-
-      setIsBurning(false);
+        router.push('/');
+        setIsBurning(false);
+      } else {
+        setIsBurning(false);
+      }
     } catch (e) {
       console.log('Error burning token ', e);
       setIsBurning(false);

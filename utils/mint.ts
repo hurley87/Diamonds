@@ -43,18 +43,22 @@ export async function mintNft(toAddress: `0x${string}`, uri: string) {
     });
     const transaction = await walletClient.writeContract(request);
 
-    // send 0.0001 base-eth to toAddress from wallet
-    const hash = await walletClient.sendTransaction({
-      account,
-      to: toAddress,
-      value: BigInt(100000000000000),
-    });
-
-    console.log('Transaction hash: ', hash);
-
     return transaction;
   } catch (e) {
     console.error(e);
     return 'Already minted';
   }
+}
+
+export async function deposit(address: `0x${string}`) {
+  // send 0.0001 base-eth to toAddress from wallet
+  const hash = await walletClient.sendTransaction({
+    account,
+    to: address,
+    value: BigInt(100000000000000),
+  });
+
+  console.log('Transaction hash: ', hash);
+
+  return hash;
 }
