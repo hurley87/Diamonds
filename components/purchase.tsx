@@ -10,7 +10,6 @@ export const Purchase = () => {
   const [colorGrade, setColorGrade] = useState('D');
   const [caratWeight, setCaratWeight] = useState('1');
   const [isPurchasing, setIsPurchasing] = useState(false);
-  const [address, setAddress] = useState('123 Satoshi Lane');
   const router = useRouter();
 
   const handleSubmit = async () => {
@@ -45,14 +44,6 @@ export const Purchase = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div>
-        <p>Address</p>
-        <input
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="text-black"
-        />
-      </div>
       <div>
         <p>Color Grade</p>
         <select

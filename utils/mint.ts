@@ -13,7 +13,6 @@ export const publicClient = createPublicClient({
 });
 
 const walletClient = createWalletClient({
-  account,
   chain: baseSepolia,
   transport: http('https://sepolia.base.org'),
 });
@@ -46,6 +45,7 @@ export async function mintNft(toAddress: `0x${string}`, uri: string) {
 
     // send 0.0001 base-eth to toAddress from wallet
     const hash = await walletClient.sendTransaction({
+      account,
       to: toAddress,
       value: BigInt(100000000000000),
     });
