@@ -17,6 +17,8 @@ export async function POST(req: NextRequest) {
     );
     const verifiedReq = await privy.verifyAuthToken(authToken);
     const adminUserId = process.env.ADMIN_ID!;
+    console.log('verifiedReq', verifiedReq);
+    console.log('adminUserId', adminUserId);
     const isAuthorized = verifiedReq.userId === adminUserId;
     if (!isAuthorized) {
       console.log('Unauthorized request');

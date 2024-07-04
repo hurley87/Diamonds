@@ -17,56 +17,36 @@ export const Token = ({ tokenId }: { tokenId: number }) => {
     };
     if (tokenId) fetchDiamond();
   }, [tokenId]);
-  const image = diamond?.image;
-  const colorGrade = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'Color Grade'
-  );
-  const caratWeight = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'Carat Weight'
-  );
-  const code = uri?.split('/')[4];
-  const giaNumber = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'GIA Number'
-  );
-  const giaDate = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'GIA Date'
-  );
-  const measurements = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'Measurements'
-  );
-  const certificate = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'Certificate'
-  );
-  const clarityGrade = diamond?.attributes?.find(
-    (attr: any) => attr.trait_type === 'Clarity Grade'
-  );
 
+  if (!diamond) return null;
+
+  console.log(diamond);
   return (
     <div className="flex flex-col justify-center">
       <h1>Diamond #{tokenId}</h1>
       <p>
         <img
           className="h-20 w-20 rounded-lg mx-auto"
-          src={image}
+          src={diamond.image}
           alt="diamond"
         />
       </p>
-      <p>Color Grade: {colorGrade?.value}</p>
-      <p>Carat Weight: {caratWeight?.value}</p>
+      <p>Color Grade: {diamond.colorGrade}</p>
+      <p>Carat Weight: {diamond.caratWeight}</p>
       <p>{uri}</p>
-      {giaNumber && (
+      {diamond.giaNumber && (
         <div>
-          <p>GIA Number: {giaNumber?.value}</p>
-          <p>GIA Date: {giaDate?.value}</p>
-          <p>Measurements: {measurements?.value}</p>
-          <p>Certificate: {certificate?.value}</p>
-          <p>Clarity Grade: {clarityGrade?.value}</p>
+          <p>GIA Number: {diamond.giaNumber}</p>
+          <p>GIA Date: {diamond.giaDate}</p>
+          <p>Measurements: {diamond.measurements}</p>
+          <p>Certificate: {diamond.certificate}</p>
+          <p>Clarity Grade: {diamond.clarityGrade}</p>
         </div>
       )}
-      <Link href={`/update/${code}`}>
+      <Link href={`/update/${diamond.code}`}>
         <button>Update</button>
       </Link>
-      <Burn tokenId={tokenId} />
+      <Burn tokenId={tokenId} diamond={diamond} />
     </div>
   );
 };

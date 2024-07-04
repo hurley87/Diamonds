@@ -80,6 +80,32 @@ export async function getDiamond(uri: string) {
   const content = await fetch(uri, {
     cache: 'no-store',
   });
-  const diamond = await content.json();
+  const json = await content.json();
+  console.log('json', json);
+  const diamond = {
+    image: json.image,
+    colorGrade: json.attributes.find(
+      (attr: any) => attr.trait_type === 'Color Grade'
+    )?.value,
+    caratWeight: json.attributes.find(
+      (attr: any) => attr.trait_type === 'Carat Weight'
+    )?.value,
+    code: uri.split('/')[4],
+    giaNumber: json.attributes.find(
+      (attr: any) => attr.trait_type === 'GIA Number'
+    )?.value,
+    giaDate: json.attributes.find((attr: any) => attr.trait_type === 'GIA Date')
+      ?.value,
+    measurements: json.attributes.find(
+      (attr: any) => attr.trait_type === 'Measurements'
+    )?.value,
+    certificate: json.attributes.find(
+      (attr: any) => attr.trait_type === 'Certificate'
+    )?.value,
+    clarityGrade: json.attributes.find(
+      (attr: any) => attr.trait_type === 'Clarity Grade'
+    )?.value,
+  };
+  console.log('diamond', diamond);
   return diamond;
 }

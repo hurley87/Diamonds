@@ -58,6 +58,8 @@ export const Update = ({ code }: { code: string }) => {
       return;
     }
 
+    console.log('diamond', diamond);
+
     const newAttributes = [
       {
         trait_type: 'Color Grade',
@@ -114,10 +116,14 @@ export const Update = ({ code }: { code: string }) => {
       { trait_type: 'Clarity Grade', value: clarityGrade },
     ];
 
+    console.log('newAttributes', newAttributes);
+
     const metadata = {
       ...diamond,
       attributes: newAttributes,
     };
+
+    console.log('metadata', metadata);
 
     const body = JSON.stringify({
       code,

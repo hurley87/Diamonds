@@ -1,12 +1,20 @@
 'use client';
-import { useWallets } from '@privy-io/react-auth';
+import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { useState } from 'react';
 import { createPublicClient, createWalletClient, custom, http } from 'viem';
 import { baseSepolia } from 'viem/chains';
 import contractAbi from '@/utils/DiamondCollection.json';
 import { useRouter } from 'next/navigation';
 
-export const Burn = ({ tokenId }: { tokenId: number }) => {
+export const Burn = ({
+  tokenId,
+  diamond,
+}: {
+  tokenId: number;
+  diamond: any;
+}) => {
+  const { user } = usePrivy();
+  const email = user?.email?.address;
   const [isBurning, setIsBurning] = useState(false);
   const [address, setAddress] = useState('');
   const { wallets } = useWallets();
@@ -23,40 +31,49 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
     setIsBurning(true);
 
     try {
-      const reponse = await fetch('/api/deposit', {
+      // await fetch('/api/deposit', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ address: account }),
+      // });
+
+      // const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
+      // const walletClient = await createWalletClient({
+      //   account,
+      //   chain: baseSepolia,
+      //   transport: custom(ethereumProvider),
+      // });
+
+      // const { request }: any = await publicClient.simulateContract({
+      //   address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
+      //   abi: contractAbi.abi,
+      //   functionName: 'burn',
+      //   args: [tokenId],
+      //   account,
+      // });
+
+      // const hash = await walletClient.writeContract(request);
+
+      // const receipt = await publicClient.waitForTransactionReceipt({
+      //   hash,
+      // });
+
+      // console.log('Burn receipt', receipt);
+
+      await fetch('/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ address: account }),
+        body: JSON.stringify({ email, address, diamond }),
       });
-      const { hash } = await reponse.json();
 
-      if (hash) {
-        const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
-        const walletClient = await createWalletClient({
-          account,
-          chain: baseSepolia,
-          transport: custom(ethereumProvider),
-        });
+      // TODO: add toast with receipt CTA
 
-        const { request }: any = await publicClient.simulateContract({
-          address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
-          abi: contractAbi.abi,
-          functionName: 'burn',
-          args: [tokenId],
-          account,
-        });
-
-        const hash = await walletClient.writeContract(request);
-
-        const receipt = await publicClient.waitForTransactionReceipt({ hash });
-
-        router.push('/');
-        setIsBurning(false);
-      } else {
-        setIsBurning(false);
-      }
+      router.push('/');
+      setIsBurning(false);
     } catch (e) {
       console.log('Error burning token ', e);
       setIsBurning(false);
