@@ -49,7 +49,7 @@ export const Purchase = () => {
         <select
           value={colorGrade}
           onChange={(e) => setColorGrade(e.target.value)}
-          className="text-black"
+          className="text-black bg-white rounded-sm"
         >
           <option value="D">D</option>
           <option value="E">E</option>
@@ -61,7 +61,7 @@ export const Purchase = () => {
         <select
           value={caratWeight}
           onChange={(e) => setCaratWeight(e.target.value)}
-          className="text-black"
+          className="text-black bg-white rounded-sm"
         >
           <option value="1">1</option>
           <option value="3">3</option>
