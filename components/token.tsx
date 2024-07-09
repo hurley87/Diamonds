@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Burn } from './burn';
 import { getDiamond, getUri } from '@/utils/view-tokens';
 import { useEffect, useState } from 'react';
+import { Transfer } from './transfer';
 
 export const Token = ({ tokenId }: { tokenId: number }) => {
   const [diamond, setDiamond] = useState<any>({});
@@ -46,6 +47,7 @@ export const Token = ({ tokenId }: { tokenId: number }) => {
         <button>Update</button>
       </Link>
       <Burn tokenId={tokenId} diamond={diamond} />
+      <Transfer tokenId={tokenId} />
     </div>
   );
 };
