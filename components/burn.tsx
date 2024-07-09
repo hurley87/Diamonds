@@ -94,12 +94,13 @@ export const Burn = ({
 
       toast({
         title: 'Burn successful!',
-        description: 'View your receipt on Basescan.',
+        description: 'View your transaction',
         action: (
           <Link
+            target="_blank"
             href={`${process.env.NEXT_PUBLIC_EXPLOER_URL}/tx/${receipt?.transactionHash}`}
           >
-            <ToastAction altText="Try again">View Receipt</ToastAction>
+            <ToastAction altText="Try again">View</ToastAction>
           </Link>
         ),
       });
