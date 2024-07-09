@@ -1,4 +1,4 @@
-import { createPublicClient, createWalletClient, http } from 'viem';
+import { createPublicClient, http } from 'viem';
 import { baseSepolia } from 'viem/chains';
 import contractAbi from './DiamondCollection.json';
 const contractAddress = '0x1f0826412A9D076700Da54153B833Cc8A33A73CC';
@@ -8,14 +8,7 @@ export const publicClient = createPublicClient({
   transport: http('https://base-sepolia.blockpi.network/v1/rpc/public	'),
 });
 
-const walletClient = createWalletClient({
-  chain: baseSepolia,
-  transport: http('https://base-sepolia.blockpi.network/v1/rpc/public	'),
-});
-
 export async function balanceOf(address: string) {
-  console.log('Address: ', address);
-  console.log('Contract Address: ', contractAddress);
   try {
     const balanceData = await publicClient.readContract({
       address: contractAddress,
@@ -81,7 +74,6 @@ export async function getDiamond(uri: string) {
     cache: 'no-store',
   });
   const json = await content.json();
-  console.log('json', json);
   const diamond = {
     image: json.image,
     colorGrade: json.attributes.find(
@@ -106,6 +98,5 @@ export async function getDiamond(uri: string) {
       (attr: any) => attr.trait_type === 'Clarity Grade'
     )?.value,
   };
-  console.log('diamond', diamond);
   return diamond;
 }

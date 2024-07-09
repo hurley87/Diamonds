@@ -1,10 +1,19 @@
 'use client';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { useState } from 'react';
-import { createPublicClient, createWalletClient, custom, http } from 'viem';
+import {
+  createPublicClient,
+  createWalletClient,
+  custom,
+  formatEther,
+  http,
+} from 'viem';
 import { baseSepolia } from 'viem/chains';
 import contractAbi from '@/utils/DiamondCollection.json';
 import { useRouter } from 'next/navigation';
+import { useToast } from './ui/use-toast';
+import { ToastAction } from './ui/toast';
+import Link from 'next/link';
 
 export const Burn = ({
   tokenId,
@@ -21,6 +30,7 @@ export const Burn = ({
   const wallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
   const account = wallet?.address as `0x${string}`;
   const router = useRouter();
+  const { toast } = useToast();
 
   const publicClient = createPublicClient({
     chain: baseSepolia,
@@ -31,46 +41,68 @@ export const Burn = ({
     setIsBurning(true);
 
     try {
-      // await fetch('/api/deposit', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ address: account }),
-      // });
+      const balance = await publicClient.getBalance({
+        address: account,
+      });
 
-      // const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
-      // const walletClient = await createWalletClient({
-      //   account,
-      //   chain: baseSepolia,
-      //   transport: custom(ethereumProvider),
-      // });
+      console.log('Balance', balance);
 
-      // const { request }: any = await publicClient.simulateContract({
-      //   address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
-      //   abi: contractAbi.abi,
-      //   functionName: 'burn',
-      //   args: [tokenId],
-      //   account,
-      // });
+      const ethAmount = formatEther(balance);
 
-      // const hash = await walletClient.writeContract(request);
+      console.log('ETH Amount', ethAmount);
 
-      // const receipt = await publicClient.waitForTransactionReceipt({
-      //   hash,
-      // });
+      if (parseFloat(ethAmount) < 0.0001) {
+        await fetch('/api/deposit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ address: account }),
+        });
+      }
 
-      // console.log('Burn receipt', receipt);
+      const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
+      const walletClient = await createWalletClient({
+        account,
+        chain: baseSepolia,
+        transport: custom(ethereumProvider),
+      });
+
+      const { request }: any = await publicClient.simulateContract({
+        address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
+        abi: contractAbi.abi,
+        functionName: 'burn',
+        args: [tokenId],
+        account,
+      });
+
+      const hash = await walletClient.writeContract(request);
+
+      const receipt = await publicClient.waitForTransactionReceipt({
+        hash,
+      });
+
+      console.log('Burn receipt', receipt);
 
       await fetch('/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, address, diamond }),
+        body: JSON.stringify({ email, address, diamond, tokenId }),
       });
 
-      // TODO: add toast with receipt CTA
+      toast({
+        title: 'Burn successful!',
+        description: 'View your receipt on Basescan.',
+        action: (
+          <Link
+            href={`${process.env.NEXT_PUBLIC_EXPLOER_URL}/tx/${receipt?.transactionHash}`}
+          >
+            <ToastAction altText="Try again">View Receipt</ToastAction>
+          </Link>
+        ),
+      });
 
       router.push('/');
       setIsBurning(false);

@@ -20,7 +20,6 @@ export const Token = ({ tokenId }: { tokenId: number }) => {
 
   if (!diamond) return null;
 
-  console.log(diamond);
   return (
     <div className="flex flex-col justify-center">
       <h1>Diamond #{tokenId}</h1>

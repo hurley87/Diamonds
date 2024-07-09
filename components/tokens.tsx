@@ -24,9 +24,6 @@ export const Tokens = ({ address }: { address: `0x${string}` }) => {
     return null;
   }
 
-  console.log('TokenIds: ', tokenIds);
-  console.log('Balance: ', balance);
-
   return (
     <div className="text-center">
       <p>
