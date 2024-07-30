@@ -26,8 +26,10 @@ export const Token = ({
     const fetchDiamond = async () => {
       const uri = (await getUri(tokenId)) as string;
       const diamond = await getDiamond(uri);
+      console.log('diamond', diamond);
       setDiamond(diamond);
     };
+    console.log('tokenId', tokenId);
     if (tokenId) fetchDiamond();
   }, [tokenId]);
 
