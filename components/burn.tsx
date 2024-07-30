@@ -194,7 +194,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
           >
             Thank you for redeeming the diamond.
             <br />
-            You're all set!
+            {`You're all set!`}
           </h1>
           <div className="flex gap-12 justify-center">
             <div className="flex flex-col gap-12 max-w-lg">

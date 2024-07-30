@@ -106,6 +106,7 @@ export const Purchase = () => {
           <div className="flex justify-between gap-2">
             {caratWeightOptions.map((weight) => (
               <div
+                key={weight}
                 onClick={() => setCaratWeight(weight)}
                 className="w-full flex flex-col gap-1 cursor-pointer"
               >
@@ -124,6 +125,7 @@ export const Purchase = () => {
           <div className="flex justify-between gap-2">
             {colorGradeOptions.map((grade) => (
               <div
+                key={grade}
                 onClick={() => setColorGrade(grade)}
                 className="w-full flex flex-col gap-1 cursor-pointer"
               >
@@ -142,7 +144,7 @@ export const Purchase = () => {
           <p>Clarity</p>
           <div className="flex justify-between gap-1">
             {clarity.map((c, i) => (
-              <div className="w-full flex flex-col gap-1">
+              <div key={c} className="w-full flex flex-col gap-1">
                 <div
                   className={`bg-[#7A8385] ${
                     clarity.length - 1 === i ? 'opacity-100' : 'opacity-40'
@@ -163,7 +165,7 @@ export const Purchase = () => {
           <p>Cut</p>
           <div className="flex justify-between gap-1">
             {cut.map((c, i) => (
-              <div className="w-full flex flex-col gap-1">
+              <div key={c} className="w-full flex flex-col gap-1">
                 <div
                   className={`bg-[#7A8385] ${
                     cut.length - 1 === i ? 'opacity-100' : 'opacity-40'
@@ -184,7 +186,7 @@ export const Purchase = () => {
           <p>Polish</p>
           <div className="flex justify-between gap-1">
             {polish.map((p, i) => (
-              <div className="w-full flex flex-col gap-1">
+              <div key={p} className="w-full flex flex-col gap-1">
                 <div
                   className={`bg-[#7A8385] ${
                     polish.length - 1 === i ? 'opacity-100' : 'opacity-40'
@@ -205,7 +207,7 @@ export const Purchase = () => {
           <p>Symmetry</p>
           <div className="flex justify-between gap-1">
             {symmetry.map((s, i) => (
-              <div className="w-full flex flex-col gap-1">
+              <div key={s} className="w-full flex flex-col gap-1">
                 <div
                   className={`bg-[#7A8385] ${
                     symmetry.length - 1 === i ? 'opacity-100' : 'opacity-40'
