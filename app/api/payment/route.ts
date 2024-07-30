@@ -14,7 +14,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     name: 'Diamond',
     description: 'Cool description',
-    redirect_url: 'https://diamonds-eight.vercel.app/thanks',
+    redirect_url: 'https://www.4collection.xyz/thanks',
 
     metadata: {
       id,
