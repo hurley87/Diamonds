@@ -33,8 +33,6 @@ export const getIrys = async () => {
 };
 
 export async function mintNft(toAddress: `0x${string}`, uri: string) {
-  console.log('mintNft', toAddress, uri);
-  console.log('contractAddress', contractAddress);
   try {
     const { request }: any = await publicClient.simulateContract({
       account,

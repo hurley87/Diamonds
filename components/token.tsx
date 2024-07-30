@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getDiamond, getUri } from '@/utils/view-tokens';
 import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
-import { CircleAlert, Search, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Transfer } from './transfer';
 import {
   Tooltip,
@@ -26,7 +26,6 @@ export const Token = ({
     const fetchDiamond = async () => {
       const uri = (await getUri(tokenId)) as string;
       const diamond = await getDiamond(uri);
-      console.log('diamond', diamond);
       setDiamond(diamond);
     };
     fetchDiamond();
