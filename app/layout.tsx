@@ -5,7 +5,7 @@ import Providers from './providers';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Footer } from '@/components/footer';
+// import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
   title: '4Collection',
@@ -35,7 +35,7 @@ export default function RootLayout({
 
           <Toaster />
         </Providers>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
