@@ -72,6 +72,8 @@ export async function getDiamond(uri: string) {
   const content = await fetch(uri, { cache: 'no-store' });
   const json = await content.json();
 
+  console.log('json', json);
+
   const getAttribute = (traitType: string) =>
     json.attributes.find((attr: any) => attr.trait_type === traitType)?.value;
 
