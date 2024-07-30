@@ -29,8 +29,7 @@ export const Token = ({
       console.log('diamond', diamond);
       setDiamond(diamond);
     };
-    console.log('tokenId', tokenId);
-    if (tokenId) fetchDiamond();
+    fetchDiamond();
   }, [tokenId]);
 
   if (!diamond) return null;
