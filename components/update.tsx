@@ -58,8 +58,6 @@ export const Update = ({ code }: { code: string }) => {
       return;
     }
 
-    console.log('diamond', diamond);
-
     const newAttributes = [
       {
         trait_type: 'Color Grade',
@@ -116,19 +114,16 @@ export const Update = ({ code }: { code: string }) => {
       { trait_type: 'Clarity Grade', value: clarityGrade },
     ];
 
-    console.log('newAttributes', newAttributes);
-
     const metadata = {
       ...diamond,
       attributes: newAttributes,
     };
 
-    console.log('metadata', metadata);
-
     const body = JSON.stringify({
       code,
       metadata,
     });
+
     const authToken = await getAccessToken();
 
     try {
@@ -154,7 +149,7 @@ export const Update = ({ code }: { code: string }) => {
         <input
           value={giaNumber}
           onChange={(e) => setGiaNumber(e.target.value)}
-          className="text-black"
+          className="text-white"
         />
       </div>
       <div>
@@ -162,7 +157,7 @@ export const Update = ({ code }: { code: string }) => {
         <input
           value={giaDate}
           onChange={(e) => setGiaDate(e.target.value)}
-          className="text-black"
+          className="text-white"
         />
       </div>
       <div>
@@ -170,7 +165,7 @@ export const Update = ({ code }: { code: string }) => {
         <input
           value={measurements}
           onChange={(e) => setMeasurements(e.target.value)}
-          className="text-black"
+          className="text-white"
         />
       </div>
       <div>
@@ -178,7 +173,7 @@ export const Update = ({ code }: { code: string }) => {
         <input
           value={certificate}
           onChange={(e) => setCertificate(e.target.value)}
-          className="text-black w-full"
+          className="text-white w-full"
         />
       </div>
       <div>
@@ -186,7 +181,7 @@ export const Update = ({ code }: { code: string }) => {
         <select
           value={clarityGrade}
           onChange={(e) => setClarityGrade(e.target.value)}
-          className="text-black"
+          className="text-white"
         >
           <option value="IF">IF</option>
           <option value="VVS1">VVS1</option>

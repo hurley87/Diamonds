@@ -28,11 +28,11 @@ const config = {
   },
   etherscan: {
     apiKey: {
-      'base-sepolia': process.env.ETHERSCAN_KEY as string,
+      'base-mainnet': process.env.ETHERSCAN_KEY as string,
     },
     customChains: [
       {
-        network: 'base',
+        network: 'base-mainnet',
         chainId: 8453,
         urls: {
           apiURL: 'https://api.basescan.org/api',

@@ -1,11 +1,11 @@
 import { createPublicClient, http } from 'viem';
-import { baseSepolia } from 'viem/chains';
 import contractAbi from './DiamondCollection.json';
-const contractAddress = '0x1f0826412A9D076700Da54153B833Cc8A33A73CC';
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`;
+import { chain } from '@/constants/chain';
 
 export const publicClient = createPublicClient({
-  chain: baseSepolia,
-  transport: http('https://base-sepolia.blockpi.network/v1/rpc/public	'),
+  chain,
+  transport: http(process.env.NEXT_PUBLIC_RPC_URL!),
 });
 
 export async function balanceOf(address: string) {
@@ -49,8 +49,7 @@ export async function getTokensOfOwner(address: string) {
     }
 
     return tokenIds;
-  } catch (error) {
-    console.error('Error fetching tokens: ', error);
+  } catch {
     return [];
   }
 }
@@ -70,33 +69,21 @@ export async function getUri(tokenId: number) {
 }
 
 export async function getDiamond(uri: string) {
-  const content = await fetch(uri, {
-    cache: 'no-store',
-  });
+  const content = await fetch(uri, { cache: 'no-store' });
   const json = await content.json();
-  const diamond = {
+
+  const getAttribute = (traitType: string) =>
+    json.attributes.find((attr: any) => attr.trait_type === traitType)?.value;
+
+  return {
     image: json.image,
-    colorGrade: json.attributes.find(
-      (attr: any) => attr.trait_type === 'Color Grade'
-    )?.value,
-    caratWeight: json.attributes.find(
-      (attr: any) => attr.trait_type === 'Carat Weight'
-    )?.value,
+    colorGrade: getAttribute('Color Grade'),
+    caratWeight: getAttribute('Carat Weight'),
     code: uri.split('/')[4],
-    giaNumber: json.attributes.find(
-      (attr: any) => attr.trait_type === 'GIA Number'
-    )?.value,
-    giaDate: json.attributes.find((attr: any) => attr.trait_type === 'GIA Date')
-      ?.value,
-    measurements: json.attributes.find(
-      (attr: any) => attr.trait_type === 'Measurements'
-    )?.value,
-    certificate: json.attributes.find(
-      (attr: any) => attr.trait_type === 'Certificate'
-    )?.value,
-    clarityGrade: json.attributes.find(
-      (attr: any) => attr.trait_type === 'Clarity Grade'
-    )?.value,
+    giaNumber: getAttribute('GIA Number'),
+    giaDate: getAttribute('GIA Date'),
+    measurements: getAttribute('Measurements'),
+    certificate: getAttribute('Certificate'),
+    clarityGrade: getAttribute('Clarity Grade'),
   };
-  return diamond;
 }

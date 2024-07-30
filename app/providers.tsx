@@ -1,7 +1,7 @@
 'use client';
 
 import { PrivyProvider } from '@privy-io/react-auth';
-import { baseSepolia } from 'viem/chains';
+import { chain } from '@/constants/chain';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID!;
@@ -16,7 +16,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         appearance: {
           theme: 'dark',
         },
-        defaultChain: baseSepolia,
+        defaultChain: chain,
       }}
     >
       {children}

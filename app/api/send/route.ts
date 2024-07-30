@@ -5,18 +5,41 @@ import { NextRequest } from 'next/server';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
-  const { email, address, diamond, tokenId } = await req.json();
+  const {
+    email,
+    firstName,
+    lastName,
+    street,
+    unitNumber,
+    city,
+    postalCode,
+    country,
+    phone,
+    diamond,
+    tokenId,
+  } = await req.json();
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'Support <help@4collection.xyz>',
       to: [email],
       subject: 'Your Diamond Delivery',
-      text: address,
+      text: firstName,
       bcc: ['davidhurley87@gmail.com'],
       cc: ['dhurls99@gmail.com'],
       reply_to: 'davidhurley87@gmail.com',
-      react: EmailTemplate({ address, diamond, tokenId }),
+      react: EmailTemplate({
+        firstName,
+        lastName,
+        street,
+        unitNumber,
+        city,
+        postalCode,
+        country,
+        phone,
+        diamond,
+        tokenId,
+      }),
     });
 
     if (error) {

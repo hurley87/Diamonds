@@ -1,25 +1,25 @@
 import { createWalletClient, http, createPublicClient, Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
-import { baseSepolia } from 'viem/chains';
 import contractAbi from './DiamondCollection.json';
-const contractAddress = process.env.CONTRACT_ADDRESS as `0x`;
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`;
 import Irys from '@irys/sdk';
+import { chain } from '@/constants/chain';
 
 const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}` as Hex);
+const network = process.env.IRYS_NETWORK;
+const providerUrl = process.env.NEXT_PUBLIC_RPC_URL;
 
 export const publicClient = createPublicClient({
-  chain: baseSepolia,
-  transport: http('https://sepolia.base.org'),
+  chain,
+  transport: http(providerUrl),
 });
 
 const walletClient = createWalletClient({
-  chain: baseSepolia,
-  transport: http('https://sepolia.base.org'),
+  chain,
+  transport: http(providerUrl),
 });
 
 export const getIrys = async () => {
-  const network = 'devnet';
-  const providerUrl = 'https://sepolia.base.org';
   const token = 'base-eth';
 
   const irys = new Irys({
@@ -44,21 +44,17 @@ export async function mintNft(toAddress: `0x${string}`, uri: string) {
     const transaction = await walletClient.writeContract(request);
 
     return transaction;
-  } catch (e) {
-    console.error(e);
+  } catch {
     return 'Already minted';
   }
 }
 
 export async function deposit(address: `0x${string}`) {
-  // send 0.0001 base-eth to toAddress from wallet
   const hash = await walletClient.sendTransaction({
     account,
     to: address,
     value: BigInt(100000000000000),
   });
-
-  console.log('Transaction hash: ', hash);
 
   return hash;
 }

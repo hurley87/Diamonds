@@ -7,41 +7,59 @@ import {
   custom,
   formatEther,
   http,
+  isAddress,
 } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { chain } from '@/constants/chain';
 import contractAbi from '@/utils/DiamondCollection.json';
-import { useRouter } from 'next/navigation';
 import { useToast } from './ui/use-toast';
 import { ToastAction } from './ui/toast';
 import Link from 'next/link';
+import { Label } from './ui/label';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from './ui/dialog';
 
 export const Transfer = ({ tokenId }: { tokenId: number }) => {
   const [isTransferring, setIsTransferring] = useState(false);
+  const [showTransfer, setShowTransfer] = useState(false);
   const [address, setAddress] = useState('');
   const { wallets } = useWallets();
   const wallet = wallets.find((wallet) => wallet.walletClientType === 'privy');
   const account = wallet?.address as `0x${string}`;
-  const router = useRouter();
   const { toast } = useToast();
 
   const publicClient = createPublicClient({
-    chain: baseSepolia,
+    chain,
     transport: http('https://base-sepolia-rpc.publicnode.com'),
   });
 
   const handleTransfer = async () => {
     setIsTransferring(true);
 
+    const isValid = isAddress(address);
+    if (!isValid) {
+      setIsTransferring(false);
+      toast({
+        title: 'Invalid address',
+        description: 'Please enter a valid address',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     try {
       const balance = await publicClient.getBalance({
         address: account,
       });
 
-      console.log('Balance', balance);
-
       const ethAmount = formatEther(balance);
-
-      console.log('ETH Amount', ethAmount);
 
       if (parseFloat(ethAmount) < 0.0001) {
         await fetch('/api/deposit', {
@@ -56,12 +74,14 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
       const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
       const walletClient = await createWalletClient({
         account,
-        chain: baseSepolia,
+        chain,
         transport: custom(ethereumProvider),
       });
 
+      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
+
       const { request }: any = await publicClient.simulateContract({
-        address: '0x1f0826412A9D076700Da54153B833Cc8A33A73CC',
+        address,
         abi: contractAbi.abi,
         functionName: 'safeTransferFrom',
         args: [account, address, tokenId],
@@ -73,8 +93,6 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
       const receipt = await publicClient.waitForTransactionReceipt({
         hash,
       });
-
-      console.log('Burn receipt', receipt);
 
       toast({
         title: 'Transfer successful!',
@@ -89,33 +107,54 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
         ),
       });
 
-      router.push('/');
       setIsTransferring(false);
+      setShowTransfer(false);
     } catch (e) {
-      console.log('Error burning token ', e);
+      toast({
+        title: 'Transfer failed',
+        description: 'Email us at XXX@gmail.com',
+        variant: 'destructive',
+      });
       setIsTransferring(false);
     }
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <label>Wallet Address</label>
-        <input
-          className="bg-white rounded-sm px-4 text-black"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </div>
-      <div>
-        <button
-          disabled={isTransferring}
-          className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
-          onClick={handleTransfer}
-        >
-          {isTransferring ? 'Burning ...' : 'Burn'}
-        </button>
-      </div>
-    </div>
+    <Dialog open={showTransfer} onOpenChange={setShowTransfer}>
+      <DialogTrigger>
+        <div className="text-center">Transfer diamond</div>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Transfer Token</DialogTitle>
+          <DialogDescription>
+            <div
+              style={{
+                backgroundColor: 'black',
+              }}
+              className="w-full flex flex-col gap-4 z-50 bg-black pt-6"
+            >
+              <div className="flex flex-col gap-6">
+                <div className="grid w-full items-center gap-1.5">
+                  <Label>Wallet Address</Label>
+                  <Input
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="0xe347bF0d8878a1Ad65335ca84ee6A6B6c04d3eA0"
+                  />
+                </div>
+                <Button
+                  disabled={isTransferring}
+                  className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
+                  onClick={handleTransfer}
+                >
+                  {isTransferring ? 'Transferring ...' : 'Transfer'}
+                </Button>
+              </div>
+            </div>
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 };
