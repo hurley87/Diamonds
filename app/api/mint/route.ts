@@ -99,6 +99,7 @@ export async function POST(req: NextRequest) {
       const uri = `https://gateway.irys.xyz/mutable/${receipt.id}`;
 
       console.log('Minting NFT with URI:', uri);
+      console.log('Mint address: ', metadata.id);
 
       const transaction = await mintNft(metadata.id, uri);
 

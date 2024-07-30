@@ -44,7 +44,8 @@ export async function mintNft(toAddress: `0x${string}`, uri: string) {
     const transaction = await walletClient.writeContract(request);
 
     return transaction;
-  } catch {
+  } catch (error) {
+    console.error('mintNft error: ', error);
     return 'Already minted';
   }
 }
