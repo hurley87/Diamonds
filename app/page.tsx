@@ -10,7 +10,7 @@ export default function Home() {
       >
         Choose your diamond
       </h1>
-      <div className="flex gap-10 justify-between max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-10 justify-between max-w-5xl mx-auto">
         <div className="flex flex-col w-full rounded-2xl gap-6">
           <div className="p-6">
             <img
@@ -169,7 +169,7 @@ export default function Home() {
           src="/coinbase.png"
           alt="diamond"
         />
-        <h2 className="text-4xl text-center leading-[64px]">
+        <h2 className="text-xl md:text-4xl text-center md:leading-[64px]">
           Our trusted partner, Coinbase Commerce, expertly handles all aspects
           of our transactions. From Know Your Customer (KYC) procedures to
           secure payments and final distribution, our collaboration with the

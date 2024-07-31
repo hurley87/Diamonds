@@ -32,7 +32,6 @@ export default function RootLayout({
               <div>{children}</div>
             </div>
           </ThemeProvider>
-
           <Toaster />
         </Providers>
         {/* <Footer /> */}

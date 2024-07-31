@@ -65,7 +65,7 @@ export const Purchase = () => {
   };
 
   return (
-    <div className="w-full h-full flex justify-between p-6">
+    <div className="w-full h-full flex flex-col md:flex-row justify-between p-6">
       <div className="h-full flex flex-col justify-between w-full">
         <h1 className="text-4xl">Brilliant, {caratWeight} Carat</h1>
         <div className="flex flex-col gap-0 py-24">

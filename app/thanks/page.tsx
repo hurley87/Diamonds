@@ -9,7 +9,7 @@ export default function ThanksPage() {
   const address = user?.wallet?.address as `0x${string}`;
 
   return (
-    <div className="w-fit max-w-screen-2xl mx-auto flex p-24 gap-24">
+    <div className="w-fit max-w-screen-2xl mx-auto flex flex-col md:flex-row p-6 md:p-24 gap-12 md:gap-24">
       <div className="flex flex-col h-full justify-start">
         <h1
           className={`text-5xl leading-[120%] w-full max-w-[420px] ${serif.className}`}
