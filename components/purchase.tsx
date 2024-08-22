@@ -37,7 +37,14 @@ export const Purchase = () => {
   const handleSubmit = async () => {
     setIsPurchasing(true);
 
+    if (!user || !user.wallet?.address || !user.email?.address) {
+      console.error('User information is incomplete');
+      setIsPurchasing(false);
+      return;
+    }
+
     if (colorGrade === '' || caratWeight === '') {
+      setIsPurchasing(false);
       return;
     }
 
@@ -56,11 +63,22 @@ export const Purchase = () => {
         },
         body,
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
+      if (!data.hosted_url) {
+        throw new Error('No hosted_url in response');
+      }
+
       router.push(data.hosted_url);
-    } catch {
+    } catch (e) {
+      console.error('Error during payment:', e);
       setIsPurchasing(false);
+      // Optionally, show an error message to the user
     }
   };
 
