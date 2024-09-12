@@ -9,7 +9,8 @@ export default async function UpdatePage({ params }: UpdatePageProps) {
   const address = params.address as `0x${string}`;
 
   const formatAddress = (address: string) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+    if (!address) return '';
+    return `${address?.slice(0, 6)}...${address?.slice(-4)}`;
   };
 
   return (
