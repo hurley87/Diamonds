@@ -37,7 +37,7 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
 
   const publicClient = createPublicClient({
     chain,
-    transport: http('https://base-sepolia-rpc.publicnode.com'),
+    transport: http(process.env.NEXT_PUBLIC_RPC_URL!),
   });
 
   const handleTransfer = async () => {
@@ -60,6 +60,8 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
       });
 
       const ethAmount = formatEther(balance);
+
+      console.log('ethAmount', ethAmount);
 
       if (parseFloat(ethAmount) < 0.0001) {
         await fetch('/api/deposit', {
