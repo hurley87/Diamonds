@@ -224,7 +224,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
   if (isPreview) {
     return (
       <Layout>
-        <div className="flex gap-2 p-6 pt-12 pr-0">
+        <div className="flex gap-2 p-6 pt-12 px-0">
           <div
             onClick={() => setIsPreview(false)}
             className="w-fit cursor-pointer"
@@ -410,7 +410,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
           </div>
         </div>
 
-        <div className="max-w-xl w-full p-24">
+        <div className="max-w-xl w-full p-6 lg:p-24">
           <Token tokenId={tokenId} />
         </div>
       </div>
