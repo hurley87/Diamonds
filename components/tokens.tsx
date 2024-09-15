@@ -20,7 +20,7 @@ export const Tokens = ({ address }: { address: `0x${string}` }) => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 p-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6">
       {tokenIds.map((tokenId) => (
         <Token key={tokenId} tokenId={tokenId} showActions={true} />
       ))}

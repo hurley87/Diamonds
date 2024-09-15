@@ -50,7 +50,7 @@ export const Header = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button text="Sign in/up" onClick={login} />
+        <Button text="Login" onClick={login} />
       )}
     </div>
   );
