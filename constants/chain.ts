@@ -1,3 +1,8 @@
-import { base, baseSepolia } from 'viem/chains';
+import {
+  base,
+  // baseSepolia
+} from 'viem/chains';
 
-export const chain = process.env.NODE_ENV === 'production' ? base : baseSepolia;
+// export const chain = process.env.NODE_ENV === 'production' ? base : baseSepolia;
+
+export const chain = base;

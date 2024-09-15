@@ -28,6 +28,8 @@ import {
 
 export const Transfer = ({ tokenId }: { tokenId: number }) => {
   const [isTransferring, setIsTransferring] = useState(false);
+  const [isApproving, setIsApproving] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
   const [address, setAddress] = useState('');
   const { wallets } = useWallets();
@@ -80,10 +82,8 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
         transport: custom(ethereumProvider),
       });
 
-      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
-
       const { request }: any = await publicClient.simulateContract({
-        address,
+        address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
         abi: contractAbi.abi,
         functionName: 'safeTransferFrom',
         args: [account, address, tokenId],
@@ -122,6 +122,46 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
     }
   };
 
+  const handleApprove = async () => {
+    setIsApproving(true);
+
+    try {
+      const ethereumProvider = (await wallet?.getEthereumProvider()) as any;
+      const walletClient = await createWalletClient({
+        account,
+        chain,
+        transport: custom(ethereumProvider),
+      });
+
+      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
+
+      const { request }: any = await publicClient.simulateContract({
+        address,
+        abi: contractAbi.abi,
+        functionName: 'approve',
+        args: [address, tokenId],
+        account,
+      });
+
+      const hash = await walletClient.writeContract(request);
+
+      await publicClient.waitForTransactionReceipt({
+        hash,
+      });
+
+      setIsApproved(true);
+      setIsApproving(false);
+    } catch (e) {
+      console.log('e', e);
+      toast({
+        title: 'Approval failed',
+        description: 'Email us at XXX@gmail.com',
+        variant: 'destructive',
+      });
+      setIsApproving(false);
+    }
+  };
+
   return (
     <Dialog open={showTransfer} onOpenChange={setShowTransfer}>
       <DialogTrigger>
@@ -146,13 +186,23 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
                     placeholder="0xe347bF0d8878a1Ad65335ca84ee6A6B6c04d3eA0"
                   />
                 </div>
-                <Button
-                  disabled={isTransferring}
-                  className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
-                  onClick={handleTransfer}
-                >
-                  {isTransferring ? 'Transferring ...' : 'Transfer'}
-                </Button>
+                {isApproved ? (
+                  <Button
+                    disabled={isTransferring}
+                    className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
+                    onClick={handleTransfer}
+                  >
+                    {isTransferring ? 'Transferring ...' : 'Transfer'}
+                  </Button>
+                ) : (
+                  <Button
+                    disabled={isApproving}
+                    className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
+                    onClick={handleApprove}
+                  >
+                    {isApproving ? 'Approving ...' : 'Approve'}
+                  </Button>
+                )}
               </div>
             </div>
           </DialogDescription>
