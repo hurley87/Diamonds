@@ -112,6 +112,7 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
       setIsTransferring(false);
       setShowTransfer(false);
     } catch (e) {
+      console.log('e', e);
       toast({
         title: 'Transfer failed',
         description: 'Email us at XXX@gmail.com',
