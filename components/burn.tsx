@@ -315,7 +315,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
 
   return (
     <Layout>
-      <div className="flex gap-2 p-6 pt-12 pr-0">
+      <div className="flex flex-col lg:flex-row gap-2 p-6 pt-12 pr-0">
         <Link href={`/profile/${address}`}>
           <div className="w-fit">
             <svg
