@@ -156,6 +156,7 @@ export const Transfer = ({
         hash,
       });
 
+      setShowTransfer(true);
       setIsApproved(true);
       setIsApproving(false);
     } catch (e) {
