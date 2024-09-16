@@ -165,7 +165,7 @@ export const Token = ({
           <Link href={`/redeem/${tokenId}`}>
             <Button>Redeem diamond</Button>
           </Link>
-          <Transfer tokenId={tokenId} />
+          <Transfer tokenId={tokenId} setDiamond={setDiamond} />
         </div>
       )}
     </div>

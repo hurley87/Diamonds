@@ -26,7 +26,13 @@ import {
   DialogTrigger,
 } from './ui/dialog';
 
-export const Transfer = ({ tokenId }: { tokenId: number }) => {
+export const Transfer = ({
+  tokenId,
+  setDiamond,
+}: {
+  tokenId: number;
+  setDiamond: (diamond: any) => void;
+}) => {
   const [isTransferring, setIsTransferring] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
@@ -111,6 +117,7 @@ export const Transfer = ({ tokenId }: { tokenId: number }) => {
 
       setIsTransferring(false);
       setShowTransfer(false);
+      setDiamond(null);
     } catch (e) {
       console.log('e', e);
       toast({
