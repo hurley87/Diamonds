@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
-import { sans } from '@/app/fonts';
 import './globals.css';
 import Providers from './providers';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-// import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: '4Collection',
-  description: 'Real Diamonds, Blockchain Certified.',
+  title: '4Collection – Digitized Diamonds',
+  description:
+    'Discover and showcase unique digital diamonds. Powered by Web3 technology.',
 };
 
 export default function RootLayout({
@@ -19,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sans.className + ' bg-black w-full'}>
+      <body>
         <Providers>
           <ThemeProvider
             attribute="class"
@@ -34,7 +33,6 @@ export default function RootLayout({
           </ThemeProvider>
           <Toaster />
         </Providers>
-        {/* <Footer /> */}
       </body>
     </html>
   );
