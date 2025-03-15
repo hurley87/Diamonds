@@ -287,16 +287,17 @@ export const Purchase = () => {
             prefer a guided experience?
           </h3>
           <h2 className="text-6xl  uppercase text-[#0C0D0D]">
-            we're here to help
+            {`we're here to help`}
           </h2>
         </div>
         <p className="text-[#0C0D0D] text-xl">
-          Navigating the world of diamond investment should be as seamless as
+          {`Navigating the world of diamond investment should be as seamless as
           possible. If you'd prefer personalized assistance with your purchase,
-          our team is ready to provide one-on-one support. <br />
+          our team is ready to provide one-on-one support.
+          <br />
           <br />
           From connecting your wallet to finalizing your investment, we'll be
-          with you every step of the way.
+          with you every step of the way.`}
         </p>
         <Link href="#">
           <Button text="Book Personal Consultation" />
