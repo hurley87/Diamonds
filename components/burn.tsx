@@ -15,12 +15,12 @@ import Link from 'next/link';
 import { chain } from '@/constants/chain';
 import { getDiamond, getUri } from '@/utils/view-tokens';
 import { Token } from './token';
-import { Button } from './ui/button';
-import { Label } from '@radix-ui/react-label';
+import { Button } from './button';
 import { Input } from './ui/input';
 import { Layout } from './layout';
 import { Separator } from '@/components/ui/separator';
 import { serif } from '@/app/fonts';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export const Burn = ({ tokenId }: { tokenId: number }) => {
   const { user } = usePrivy();
@@ -42,6 +42,8 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
   const [email, setEmail] = useState(userEmail);
   const [isPreview, setIsPreview] = useState(false);
   const [isBurned, setIsBurned] = useState(false);
+  const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
+  const [dataConsentAccepted, setDataConsentAccepted] = useState(false);
 
   useEffect(() => {
     const fetchDiamond = async () => {
@@ -162,23 +164,46 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
     }
   };
 
+  const isFormValid = () => {
+    return (
+      firstName !== '' &&
+      lastName !== '' &&
+      street !== '' &&
+      city !== '' &&
+      postalCode !== '' &&
+      country !== '' &&
+      phone !== '' &&
+      email !== '' &&
+      privacyPolicyAccepted &&
+      dataConsentAccepted
+    );
+  };
+
   const handlePreview = async () => {
-    if (
-      firstName === '' ||
-      lastName === '' ||
-      street === '' ||
-      city === '' ||
-      postalCode === '' ||
-      country === '' ||
-      phone === '' ||
-      email === ''
-    ) {
-      toast({
-        title: 'Invalid input',
-        description: 'Please fill out all fields',
-        variant: 'destructive',
-      });
-      setIsBurning(false);
+    if (!isFormValid()) {
+      if (
+        firstName === '' ||
+        lastName === '' ||
+        street === '' ||
+        city === '' ||
+        postalCode === '' ||
+        country === '' ||
+        phone === '' ||
+        email === ''
+      ) {
+        toast({
+          title: 'Invalid input',
+          description: 'Please fill out all fields',
+          variant: 'destructive',
+        });
+      } else if (!privacyPolicyAccepted || !dataConsentAccepted) {
+        toast({
+          title: 'Terms not accepted',
+          description:
+            'Please accept both the privacy policy and data consent to continue',
+          variant: 'destructive',
+        });
+      }
       return;
     }
 
@@ -188,30 +213,31 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
   if (isBurned) {
     return (
       <Layout>
-        <div className="flex flex-col gap-12 p-24">
+        <div className="flex flex-col lg:flex-row gap-0 p-6 pt-24 pb-48 pr-0 max-w-5xl mx-auto">
           <h1
-            className={`${serif.className} text-5xl mx-auto text-center leading-[64px]`}
+            className={`${serif.className} text-5xl text-left leading-[64px] uppercase w-full`}
           >
-            Thank you for redeeming the diamond.
+            {`thank you for redeeming the diamond.`}
             <br />
             {`You're all set!`}
           </h1>
-          <div className="flex gap-12 justify-center">
+          <div className="flex gap-12 justify-center w-full">
             <div className="flex flex-col gap-12 max-w-lg">
-              <div className="flex flex-col gap-4 text-lg text-[#D5D5D5]">
+              <div className="flex flex-col gap-6 text-xl text-[#7A8385]">
                 <div>Your diamond is now being prepared for shipment.</div>
                 <div>
                   We will send you an email shortly with the shipment details,
                   including a tracking number and expected delivery date.
                 </div>
                 <div>
-                  Get ready to receive your exquisite diamond, and thank you for
+                  Get ready to recieve your exquisite diamond, and thank you for
                   trusting us with your investment.
                 </div>
                 <Link className="w-full" href="/">
-                  <Button className="bg-white rounded-sm px-4 text-black disabled:opacity-50 mt-6">
-                    Back to homepage
-                  </Button>
+                  <Button
+                    text="Back to homepage"
+                    className="mt-6 border-transparent"
+                  />
                 </Link>
               </div>
             </div>
@@ -224,31 +250,16 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
   if (isPreview) {
     return (
       <Layout>
-        <div className="flex gap-2 p-6 pt-12 px-0">
-          <div
-            onClick={() => setIsPreview(false)}
-            className="w-fit cursor-pointer"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="flex flex-col lg:flex-row gap-24 p-6 py-24 pr-0 max-w-5xl mx-auto">
+          <div className="flex flex-col gap-10 w-2/3">
+            <h1
+              className="text-2xl leading-6 flex items-center gap-4 cursor-pointer"
+              onClick={() => setIsPreview(false)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </div>
-          <div className="flex flex-col gap-12 w-full">
-            <h1 className="text-2xl leading-6">
-              Burn NFT and redeem the diamond
+              <img src="/leftCaret.svg" alt="burn" /> Burn NFT and redeem the
+              diamond
             </h1>
-            <p className="text-lg max-w-[600px] text-[#D5D5D5]">
+            <p className="text-[#7A8385]">
               Ready to burning your NFT? Confirming to redeem your physical
               diamond. Once you redeem the diamond, it will be delivered to your
               provided address.
@@ -259,16 +270,16 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
                 <div className="flex justify-between gap-10">
                   <div className="flex flex-col gap-6 w-full">
                     <div>
-                      <div className="flex flex-col text-sm text-[#D5D5D5]">
-                        Receiver:
+                      <div className="flex flex-col text-sm text-[#7A8385]">
+                        Receiver
                       </div>
                       <div className="flex flex-col">
                         {firstName} {lastName}
                       </div>
                     </div>
                     <div>
-                      <div className="flex flex-col text-sm text-[#D5D5D5]">
-                        Delivery address:
+                      <div className="flex flex-col text-sm text-[#7A8385]">
+                        Delivery address
                       </div>
                       <div className="flex flex-col">
                         {street}, {city}, {country}, {postalCode}
@@ -278,14 +289,14 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
                   <Separator orientation="vertical" />
                   <div className="flex flex-col gap-6 w-full">
                     <div>
-                      <div className="flex flex-col text-sm text-[#D5D5D5]">
-                        Phone:
+                      <div className="flex flex-col text-sm text-[#7A8385]">
+                        Phone
                       </div>
                       <div className="flex flex-col">{phone}</div>
                     </div>
                     <div>
-                      <div className="flex flex-col text-sm text-[#D5D5D5]">
-                        Email:
+                      <div className="flex flex-col text-sm text-[#7A8385]">
+                        Email
                       </div>
                       <div className="flex flex-col">{email}</div>
                     </div>
@@ -293,19 +304,18 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
                 </div>
               </div>
               <Button
+                text={isBurning ? 'Burning ...' : 'Burn NFT'}
                 disabled={isBurning}
-                className="bg-white rounded-sm px-4 text-black disabled:opacity-50 mt-6"
+                className="w-full mt-6"
                 onClick={handleBurn}
-              >
-                {isBurning ? 'Burning ...' : 'Burn NFT to redeem diamond'}
-              </Button>
-              <p className="text-xs text-[#ACACAC]">
+              />
+              <p className="text-sm text-[#7A8385]">
                 *I know that I am about to destroy my NFT and that the physical
                 copy will be sent to the provided address
               </p>
             </div>
           </div>
-          <div className="max-w-xl w-full p-24">
+          <div className="max-w-xl w-1/3">
             <Token tokenId={tokenId} />
           </div>
         </div>
@@ -315,102 +325,141 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
 
   return (
     <Layout>
-      <div className="flex flex-col lg:flex-row gap-2 p-6 pt-12 pr-0">
-        <Link href={`/profile/${address}`}>
-          <div className="w-fit">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </div>
-        </Link>
-        <div className="flex flex-col gap-12 w-full">
-          <h1 className="text-2xl leading-6">Delivery</h1>
-          <p className="text-lg max-w-[600px] text-[#D5D5D5]">
+      <div className="flex flex-col lg:flex-row gap-0 p-6 py-24 pr-0 max-w-5xl mx-auto">
+        <div className="flex flex-col gap-12 w-2/3">
+          <h1 className="text-2xl leading-6 flex items-center gap-4">
+            <Link href={`/profile/${address}`}>
+              <img src="/leftCaret.svg" alt="arrow-left" />
+            </Link>
+            Delivery
+          </h1>
+          <p className="max-w-[400px] text-[#7A8385]">
             Please fill out the form below with your shipping details to ensure
             your diamond reaches you safely.
           </p>
-          <div className="w-full max-w-lg flex flex-col gap-4">
-            <div className="flex justify-between gap-6">
+          <div className="w-full max-w-lg flex flex-col gap-3">
+            <div className="flex justify-between gap-3">
               <div className="grid w-full items-center gap-1.5">
-                <Label className="text-[#B2B2B2]">First Name</Label>
                 <Input
                   value={firstName}
+                  className="text-[#373B3C] rounded-xl"
+                  placeholder="First Name"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
               <div className="grid w-full items-center gap-1.5">
-                <Label className="text-[#B2B2B2]">Last Name</Label>
                 <Input
                   value={lastName}
+                  className="text-[#373B3C] rounded-xl"
+                  placeholder="Last Name"
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
             <div className="grid w-full items-center gap-1.5">
-              <Label className="text-[#B2B2B2]">Street and house number</Label>
               <Input
                 value={street}
+                className="text-[#373B3C] rounded-xl"
+                placeholder="Street and house number"
                 onChange={(e) => setStreet(e.target.value)}
               />
             </div>
             <div className="grid w-full items-center gap-1.5">
-              <Label className="text-[#B2B2B2]">
-                Apartment number (optional)
-              </Label>
               <Input
                 value={unitNumber}
+                className="text-[#373B3C] rounded-xl"
+                placeholder="Apartment number (optional)"
                 onChange={(e) => setUnitNumber(e.target.value)}
               />
             </div>
-            <div className="flex justify-between gap-6">
+            <div className="flex justify-between gap-3">
               <div className="grid w-full items-center gap-1.5">
-                <Label className="text-[#B2B2B2]">Postal Code</Label>
                 <Input
                   value={postalCode}
+                  className="text-[#373B3C] rounded-xl"
+                  placeholder="Postal Code"
                   onChange={(e) => setPostalCode(e.target.value)}
                 />
               </div>
               <div className="grid w-full items-center gap-1.5">
-                <Label className="text-[#B2B2B2]">City</Label>
-                <Input value={city} onChange={(e) => setCity(e.target.value)} />
+                <Input
+                  value={city}
+                  className="text-[#373B3C] rounded-xl"
+                  placeholder="City"
+                  onChange={(e) => setCity(e.target.value)}
+                />
               </div>
             </div>
             <div className="grid w-full items-center gap-1.5">
-              <Label className="text-[#B2B2B2]">Country</Label>
               <Input
                 value={country}
+                className="text-[#373B3C] rounded-xl"
+                placeholder="Country"
                 onChange={(e) => setCountry(e.target.value)}
               />
             </div>
             <div className="grid w-full items-center gap-1.5">
-              <Label className="text-[#B2B2B2]">Phone number</Label>
-              <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <Input
+                value={phone}
+                className="text-[#373B3C] rounded-xl"
+                placeholder="Phone number"
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
             <div className="grid w-full items-center gap-1.5">
-              <Label className="text-[#B2B2B2]">Email</Label>
-              <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                value={email}
+                className="text-[#373B3C] rounded-xl"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-6 mt-4">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="privacy-policy"
+                  checked={privacyPolicyAccepted}
+                  onCheckedChange={(checked: boolean) =>
+                    setPrivacyPolicyAccepted(checked)
+                  }
+                />
+                <label
+                  htmlFor="privacy-policy"
+                  className="text-sm text-[#373B3C] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  I have acknowledged the privacy policy.
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="data-consent"
+                  checked={dataConsentAccepted}
+                  onCheckedChange={(checked: boolean) =>
+                    setDataConsentAccepted(checked)
+                  }
+                />
+                <label
+                  htmlFor="data-consent"
+                  className="text-sm text-[#373B3C] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  I consent to the storage of my information for contact
+                  purposes and to facilitate any follow-up inquiries.
+                </label>
+              </div>
+              <p className="text-sm text-[#373B3C]">
+                Note: You can revoke this consent at any time with effect for
+                the future by sending an email to info@4collection.com send.
+              </p>
             </div>
             <Button
-              className="bg-white rounded-sm px-4 text-black disabled:opacity-50 mt-6"
+              className="w-full mt-6"
               onClick={handlePreview}
-            >
-              Continue
-            </Button>
+              text="Continue"
+            />
           </div>
         </div>
 
-        <div className="max-w-xl w-full p-6 lg:p-24">
+        <div className="max-w-xl w-1/3">
           <Token tokenId={tokenId} />
         </div>
       </div>
