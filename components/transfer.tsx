@@ -16,7 +16,7 @@ import { ToastAction } from './ui/toast';
 import Link from 'next/link';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
-import { Button } from './ui/button';
+import { Button } from './button';
 import {
   Dialog,
   DialogContent,
@@ -175,43 +175,51 @@ export const Transfer = ({
       <DialogTrigger>
         <div className="text-center">Transfer diamond</div>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent
+        style={{
+          background: 'rgba(55, 59, 60, 0.65)',
+          border: 'none',
+          borderRadius: '16px',
+          padding: '30px',
+        }}
+      >
         <DialogHeader>
-          <DialogTitle>Transfer Token</DialogTitle>
+          <DialogTitle className="text-white text-center">
+            Transfer Token
+          </DialogTitle>
           <DialogDescription>
-            <div
-              style={{
-                backgroundColor: 'black',
-              }}
-              className="w-full flex flex-col gap-4 z-50 bg-black pt-6"
-            >
+            <div className="w-full flex flex-col gap-6 z-50 pt-6">
               <div className="flex flex-col gap-6">
                 <div className="grid w-full items-center gap-1.5">
-                  <Label>Wallet Address</Label>
+                  <Label className="text-white">Wallet Address</Label>
                   <Input
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    className="rounded-xl px-4 text-white disabled:opacity-50"
                     placeholder="0xe347bF0d8878a1Ad65335ca84ee6A6B6c04d3eA0"
                   />
                 </div>
                 {isApproved ? (
                   <Button
                     disabled={isTransferring}
-                    className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
+                    className="bg-white rounded-full px-4 text-black disabled:opacity-50"
                     onClick={handleTransfer}
-                  >
-                    {isTransferring ? 'Transferring ...' : 'Transfer'}
-                  </Button>
+                    text={isTransferring ? 'Transferring ...' : 'Transfer'}
+                  />
                 ) : (
                   <Button
                     disabled={isApproving}
-                    className="bg-white rounded-sm px-4 text-black disabled:opacity-50"
+                    className="bg-white rounded-full px-4 text-black disabled:opacity-50"
                     onClick={handleApprove}
-                  >
-                    {isApproving ? 'Approving ...' : 'Approve'}
-                  </Button>
+                    text={isApproving ? 'Approving ...' : 'Approve'}
+                  />
                 )}
               </div>
+              <img
+                src="/transferLogo.png"
+                alt="arrow-right"
+                className="w-[164px] h-auto mx-auto mt-6"
+              />
             </div>
           </DialogDescription>
         </DialogHeader>
