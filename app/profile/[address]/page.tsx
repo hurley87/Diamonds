@@ -2,11 +2,11 @@ import { Tokens } from '@/components/tokens';
 import { Email } from './email';
 
 interface UpdatePageProps {
-  params: { address: string };
+  params: Promise<{ address: `0x${string}` }>;
 }
 
 export default async function UpdatePage({ params }: UpdatePageProps) {
-  const address = params.address as `0x${string}`;
+  const { address } = await params;
 
   const formatAddress = (address: string) => {
     if (!address) return '';
