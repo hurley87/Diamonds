@@ -20,22 +20,28 @@ export const Header = () => {
   };
 
   return (
-    <div className="w-full max-w-screen-2xl mx-auto flex justify-between p-6 items-center">
+    <div
+      className="w-full mx-auto flex justify-between p-9 items-center"
+      style={{
+        background: `linear-gradient(
+    to bottom, 
+    rgba(12, 13, 13, 1) 41%, 
+    rgba(12, 13, 13, 0.75) 65%, 
+    rgba(55, 59, 60, 0.65) 84%, 
+    rgba(55, 59, 60, 0) 100%
+  )`,
+        opacity: 0.3,
+      }}
+    >
+      <span></span>
       <Link href="/">
-        <Image src="/logo.png" alt="Logo" width={161} height={32} />
+        <Image src="/Logo.svg" alt="Logo" width={164} height={48} />
       </Link>
       {!ready ? null : user ? (
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="flex items-center gap-2">
-              <div>{formatAddress(address)}</div>
-              <img
-                src={`https://zora.co/api/avatar/${address}?size=36`}
-                alt="Profile"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
+            <div className="uppercase text-[#F5F5F5] cursor-pointer">
+              {formatAddress(address)}
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -50,7 +56,12 @@ export const Header = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button text="Login" onClick={login} />
+        <div
+          onClick={login}
+          className="uppercase text-[#F5F5F5] cursor-pointer"
+        >
+          Sign in
+        </div>
       )}
     </div>
   );

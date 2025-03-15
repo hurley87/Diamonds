@@ -3,7 +3,7 @@ import './globals.css';
 import Providers from './providers';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
-import { ThemeProvider } from '@/components/theme-provider';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
   title: '4Collection – Digitized Diamonds',
@@ -20,17 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="min-h-screen w-full flex flex-col">
-              <Header />
-              <div>{children}</div>
-            </div>
-          </ThemeProvider>
+          <div className="min-h-screen w-full flex flex-col">
+            <Header />
+            <div>{children}</div>
+            <Footer />
+          </div>
           <Toaster />
         </Providers>
       </body>
