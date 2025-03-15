@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { getDiamond, getUri } from '@/utils/view-tokens';
 import { useEffect, useState } from 'react';
-import { Button } from './ui/button';
 import { X } from 'lucide-react';
 import { Transfer } from './transfer';
 import {
@@ -11,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from './ui/tooltip';
+import { Button } from './button';
 
 export const Token = ({
   tokenId,
@@ -34,7 +34,15 @@ export const Token = ({
   if (!diamond) return null;
 
   return (
-    <div className="flex flex-col w-full p-6 gap-6">
+    <div
+      style={{
+        background: `
+              linear-gradient(to bottom, rgba(1, 72, 76, 0) 47%, rgba(1, 72, 76, .2) 94%) 18%, 
+              rgba(166, 175, 177, 0.3)
+            `,
+      }}
+      className="flex flex-col w-full p-6 gap-6 rounded-xl"
+    >
       <div className="flex flex-col w-full gap-6 relative">
         {showMetadata && (
           <div
@@ -92,9 +100,57 @@ export const Token = ({
           </div>
         )}
 
-        <p className="text-right text-sm">226.095,25 €</p>
-        <img className="h-auto w-full py-6" src="/diamond.png" alt="diamond" />
-        <div className="flex gap-6 justify-center pb-6">
+        <img
+          className="h-auto w-2/3 mx-auto py-2"
+          src="/diamond.png"
+          alt="diamond"
+        />
+        <div className="flex justify-between text-center">
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Karat</p>
+            <p className="text-black font-bold">1,01</p>
+          </div>
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+              Clarity
+            </p>
+            <p className="text-black font-bold">IF</p>
+          </div>
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Color</p>
+            <p className="text-black font-bold">D</p>
+          </div>
+        </div>
+        <div className="flex justify-between text-center">
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Cut</p>
+            <p className="text-black font-bold">exzellent</p>
+          </div>
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+              Symmetry
+            </p>
+            <p className="text-black font-bold">exzellent</p>
+          </div>
+          <div className="flex flex-col w-full">
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+              Polish
+            </p>
+            <p className="text-black font-bold">exzellent</p>
+          </div>
+        </div>
+        <div className="flex gap-5 justify-center">
+          <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#373B3C]">
+            D
+          </div>
+          <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
+            E
+          </div>
+          <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
+            F
+          </div>
+        </div>
+        <div className="flex gap-6 justify-center">
           <div className="flex gap-2 items-center justify-center">
             <div className="text-center opacity-50 text-xs">
               certified by GIA
@@ -130,40 +186,12 @@ export const Token = ({
             />
           </div>
         </div>
-        <div className="flex justify-between text-center">
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Token ID</p>
-            <p>{tokenId}</p>
-          </div>
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Color Grade</p>
-            <p>{diamond.colorGrade}</p>
-          </div>
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Color Grade</p>
-            <p>{diamond.caratWeight}</p>
-          </div>
-        </div>
-        <div className="flex justify-between text-center">
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Cut</p>
-            <p>excellent</p>
-          </div>
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Symmetry</p>
-            <p>excellent</p>
-          </div>
-          <div className="flex flex-col w-full">
-            <p className="text-xs opacity-50">Polish</p>
-            <p>excellent</p>
-          </div>
-        </div>
       </div>
-
+      <p className="text-center text-xl">226.095,25 €</p>
       {showActions && (
         <div className="flex flex-col gap-4">
           <Link href={`/redeem/${tokenId}`}>
-            <Button>Redeem diamond</Button>
+            <Button text="Redeem diamond" className="w-full" />
           </Link>
           <Transfer tokenId={tokenId} setDiamond={setDiamond} />
         </div>

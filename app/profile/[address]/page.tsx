@@ -14,7 +14,7 @@ export default async function UpdatePage({ params }: UpdatePageProps) {
   };
 
   return (
-    <div className="p-6 flex flex-col gap-9 font-serif max-w-3xl w-full mx-auto py-24">
+    <div className="p-6 flex flex-col gap-9 font-serif max-w-screen-xl w-full mx-auto py-24">
       <div className="flex items-center gap-4">
         <img
           src={`https://zora.co/api/avatar/${address}?size=36`}

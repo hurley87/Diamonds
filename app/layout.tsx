@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <div className="min-h-screen w-full flex flex-col relative">
+          <div className="min-h-screen w-full flex flex-col relative bg-[#F5F5F5]">
             <VideoBackground />
             <Header />
             <div className="relative z-10">{children}</div>
