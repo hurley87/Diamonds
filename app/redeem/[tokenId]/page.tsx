@@ -10,7 +10,7 @@ const BurnPage = async ({ params }: BurnPageProps): Promise<JSX.Element> => {
   const parsedTokenId = parseInt(tokenId, 10);
 
   if (isNaN(parsedTokenId)) {
-    throw new Error('Invalid token ID');
+    throw new Error('Invalid ID');
   }
 
   return (
