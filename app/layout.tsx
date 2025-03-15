@@ -4,6 +4,7 @@ import Providers from './providers';
 import { Header } from '@/components/header';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
+import { VideoBackground } from '@/components/video-background';
 
 export const metadata: Metadata = {
   title: '4Collection – Digitized Diamonds',
@@ -20,9 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <div className="min-h-screen w-full flex flex-col">
+          <div className="min-h-screen w-full flex flex-col relative">
+            <VideoBackground />
             <Header />
-            <div>{children}</div>
+            <div className="relative z-10">{children}</div>
             <Footer />
           </div>
           <Toaster />
