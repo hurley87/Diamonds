@@ -2,7 +2,6 @@
 import { usePrivy } from '@privy-io/react-auth';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from './button';
 import {
   DropdownMenu,
   DropdownMenuContent,

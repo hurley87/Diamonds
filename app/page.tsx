@@ -19,52 +19,60 @@ export default function Home() {
               rgba(166, 175, 177, 0.3)
             `,
             }}
-            className="flex flex-col w-full rounded-2xl gap-6"
+            className="flex flex-col w-full rounded-2xl gap-6 p-6"
           >
-            <div className="p-10">
-              <img
-                className="h-auto w-full block"
-                src="/diamond.png"
-                alt="diamond"
-              />
+            <div className="p-6">
+              <img className="h-auto w-full" src="/diamond.png" alt="diamond" />
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Carat</p>
-                <p>1.01</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Karat
+                </p>
+                <p className="text-black font-bold">1,01</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Clarity</p>
-                <p>IF</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Clarity
+                </p>
+                <p className="text-black font-bold">IF</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Color</p>
-                <p>D</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Color
+                </p>
+                <p className="text-black font-bold">D</p>
               </div>
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Cut</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Cut
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Symmetry</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Symmetry
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Polish</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Polish
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
             </div>
             <div className="flex flex-col gap-6 pt-6">
               <div className="flex gap-5 justify-center">
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black text-black bg-white">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#373B3C]">
                   D
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   E
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   F
                 </div>
               </div>
@@ -79,52 +87,64 @@ export default function Home() {
               linear-gradient(to bottom, rgba(93, 83, 0, 0) 47%, rgba(93, 83, 0, .2) 94%) 18%
             `,
             }}
-            className="flex flex-col w-full rounded-2xl gap-6"
+            className="flex flex-col w-full rounded-2xl gap-6 p-6"
           >
             <div className="p-6">
               <img className="h-auto w-full" src="/diamond.png" alt="diamond" />
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Carat</p>
-                <p>3.01</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Karat
+                </p>
+                <p className="text-black font-bold">1,01</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Clarity</p>
-                <p>IF</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Clarity
+                </p>
+                <p className="text-black font-bold">IF</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Color</p>
-                <p>D</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Color
+                </p>
+                <p className="text-black font-bold">D</p>
               </div>
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Cut</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Cut
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Symmetry</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Symmetry
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Polish</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Polish
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
             </div>
             <div className="flex flex-col gap-6 pt-6">
               <div className="flex gap-5 justify-center">
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black text-black bg-white">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#373B3C]">
                   D
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   E
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   F
                 </div>
               </div>
-              <Link href="/buy" className="w-fit mx-auto mb-6">
+              <Link href="/buy" className="w-fit mx-auto">
                 <Button text="Buy Now" />
               </Link>
             </div>
@@ -135,52 +155,64 @@ export default function Home() {
               linear-gradient(to bottom, rgba(91, 20, 26, 0) 47%, rgba(91, 20, 26, .2) 94%) 18%
             `,
             }}
-            className="flex flex-col w-full rounded-2xl gap-6"
+            className="flex flex-col w-full rounded-2xl gap-6 p-6"
           >
             <div className="p-6">
               <img className="h-auto w-full" src="/diamond.png" alt="diamond" />
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Carat</p>
-                <p>5.01</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Karat
+                </p>
+                <p className="text-black font-bold">1,01</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Clarity</p>
-                <p>IF</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Clarity
+                </p>
+                <p className="text-black font-bold">IF</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Color</p>
-                <p>D</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Color
+                </p>
+                <p className="text-black font-bold">D</p>
               </div>
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Cut</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Cut
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Symmetry</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Symmetry
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60">Polish</p>
-                <p>excellent</p>
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                  Polish
+                </p>
+                <p className="text-black font-bold">exzellent</p>
               </div>
             </div>
             <div className="flex flex-col gap-6 pt-6">
               <div className="flex gap-5 justify-center">
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black text-black bg-white">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#373B3C]">
                   D
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   E
                 </div>
-                <div className="h-7	w-7 rounded-full border border-white text-center text-sm leading-6 pl-0.5 font-black ">
+                <div className="h-7 w-7 rounded-full  flex items-center justify-center text-sm text-[#DFE5E5] bg-[#7A8385]">
                   F
                 </div>
               </div>
-              <Link href="/buy" className="w-fit mx-auto">
+              <Link href="/buy" className="w-fit mx-auto pb-6">
                 <Button text="Buy Now" />
               </Link>
             </div>
