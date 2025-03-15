@@ -43,13 +43,22 @@ export const Header = () => {
               {formatAddress(address)}
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent
+            align="end"
+            className="bg-[#373B3C] rounded-xl p-6 backdrop-blur-xl"
+          >
             <DropdownMenuItem asChild>
-              <Link className="cursor-pointer" href={`/profile/${address}`}>
+              <Link
+                className="cursor-pointer text-[#BECBCC] text-xl uppercase"
+                href={`/profile/${address}`}
+              >
                 My Profile
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer" onSelect={logout}>
+            <DropdownMenuItem
+              className="cursor-pointer text-[#BECBCC] text-xl uppercase"
+              onSelect={logout}
+            >
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

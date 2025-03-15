@@ -5,7 +5,7 @@ import { usePrivy } from '@privy-io/react-auth';
 import { serif } from '../fonts';
 
 export default function ThanksPage() {
-  const { user } = usePrivy();
+  const { user, login } = usePrivy();
   const address = user?.wallet?.address as `0x${string}`;
 
   return (
@@ -40,9 +40,13 @@ export default function ThanksPage() {
               feugiat lectus.
             </p>
           </div>
-          <Link href={`/profile/${address}`}>
-            <Button text="Check out your diamond" />
-          </Link>
+          {address ? (
+            <Link href={`/profile/${address}`}>
+              <Button text="Check out your diamond" />
+            </Link>
+          ) : (
+            <Button onClick={login} text="Connect your wallet" />
+          )}
         </div>
       </div>
     </div>
