@@ -91,16 +91,16 @@ export const Purchase = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 py-12 max-w-screen-xl mx-auto font-redhat">
+    <div className="flex flex-col gap-8 md:gap-12 py-8 md:py-12 max-w-screen-xl mx-auto font-redhat px-4 md:px-0">
       <img src="/step3.png" alt="Diamond" className="w-full h-auto" />
-      <div className="w-full h-full flex flex-col md:flex-row justify-between gap-24 p-14 bg-[#DFE5E5] rounded-2xl">
+      <div className="w-full h-full flex flex-col md:flex-row justify-between gap-8 md:gap-24 p-6 md:p-14 bg-[#DFE5E5] rounded-2xl">
         <div className="h-full flex flex-col justify-between w-full">
-          <div className="flex flex-col gap-12 h-full">
-            <h1 className="text-4xl text-[#373B3C] font-haboro uppercase">
+          <div className="flex flex-col gap-8 md:gap-12 h-full">
+            <h1 className="text-3xl md:text-4xl text-[#373B3C] font-haboro uppercase">
               Brilliant, {caratWeight} Carat
             </h1>
             <img src="/buy.png" alt="Diamond" className="w-full h-auto" />
-            <div className="flex gap-2 pt-12 items-center">
+            <div className="flex gap-2 pt-8 md:pt-12 items-center">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -110,13 +110,13 @@ export const Purchase = () => {
                         alt="Exclamation"
                         className="h-4 w-auto"
                       />
-                      <div className="text-left text-[#62696B]">
+                      <div className="text-left text-[#62696B] text-xs md:text-base">
                         Certified by GIA
                       </div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>
+                    <p className="text-xs md:text-base">
                       The Gemological Institute of America (GIA) is a leading
                       authority on diamonds, known for creating the 4Cs (Cut,
                       Color, Clarity, Carat) grading system. It provides
@@ -130,9 +130,9 @@ export const Purchase = () => {
           </div>
           <div className="h-8"></div>
         </div>
-        <div className="flex flex-col gap-8 w-full max-w-xl mx-auto p-4">
+        <div className="flex flex-col gap-6 md:gap-8 w-full max-w-xl mx-auto p-4">
           <div className="w-full flex flex-col gap-4">
-            <p className="text-xl text-black">Choose Carat</p>
+            <p className="text-lg md:text-xl text-black">Choose Carat</p>
             <div className="flex justify-between gap-2">
               {caratWeightOptions.map((weight) => (
                 <div
@@ -145,13 +145,15 @@ export const Purchase = () => {
                       caratWeight === weight ? 'h-2.5' : 'h-0.5'
                     }  w-full transition-all duration-200 ease-in-out`}
                   ></div>
-                  <div className="text-center">{weight}</div>
+                  <div className="text-center text-xs md:text-base">
+                    {weight}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <p className="text-xl text-black">Choose Color</p>
+            <p className="text-lg md:text-xl text-black">Choose Color</p>
             <div className="flex justify-between gap-2">
               {colorGradeOptions.map((grade) => (
                 <div
@@ -164,13 +166,15 @@ export const Purchase = () => {
                       colorGrade === grade ? 'h-2.5' : 'h-0.5'
                     } w-full transition-all duration-200 ease-in-out`}
                   ></div>
-                  <div className="text-center">{grade}</div>
+                  <div className="text-center text-xs md:text-base">
+                    {grade}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="w-full flex flex-col gap-6 pt-16">
-            <p>Clarity</p>
+          <div className="w-full flex flex-col gap-4 md:gap-6 pt-8 md:pt-16">
+            <p className="text-lg md:text-xl">Clarity</p>
             <div className="flex justify-between gap-1">
               {clarity.map((c, i) => (
                 <div key={c} className="w-full flex flex-col gap-1">
@@ -184,7 +188,7 @@ export const Purchase = () => {
                   <div
                     className={`${
                       clarity.length - 1 === i ? 'opacity-100' : 'opacity-40'
-                    } w-full text-center text-sm text-black`}
+                    } w-full text-center text-xs md:text-sm text-black`}
                   >
                     {c}
                   </div>
@@ -193,7 +197,7 @@ export const Purchase = () => {
             </div>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <p>Cut</p>
+            <p className="text-lg md:text-xl">Cut</p>
             <div className="flex justify-between gap-1">
               {cut.map((c, i) => (
                 <div key={c} className="w-full flex flex-col gap-1">
@@ -207,7 +211,7 @@ export const Purchase = () => {
                   <div
                     className={`${
                       cut.length - 1 === i ? 'opacity-100' : 'opacity-40'
-                    } w-full text-center text-sm text-black`}
+                    } w-full text-center text-xs md:text-sm text-black`}
                   >
                     {c}
                   </div>
@@ -216,7 +220,7 @@ export const Purchase = () => {
             </div>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <p>Polish</p>
+            <p className="text-lg md:text-xl">Polish</p>
             <div className="flex justify-between gap-1">
               {polish.map((p, i) => (
                 <div key={p} className="w-full flex flex-col gap-1">
@@ -230,7 +234,7 @@ export const Purchase = () => {
                   <div
                     className={`${
                       polish.length - 1 === i ? 'opacity-100' : 'opacity-40'
-                    } w-full text-center text-sm text-black`}
+                    } w-full text-center text-xs md:text-sm text-black`}
                   >
                     {p}
                   </div>
@@ -239,7 +243,7 @@ export const Purchase = () => {
             </div>
           </div>
           <div className="w-full flex flex-col gap-4">
-            <p>Symmetry</p>
+            <p className="text-lg md:text-xl">Symmetry</p>
             <div className="flex justify-between gap-1">
               {symmetry.map((s, i) => (
                 <div
@@ -256,7 +260,7 @@ export const Purchase = () => {
                   <div
                     className={`${
                       symmetry.length - 1 === i ? 'opacity-100' : 'opacity-40'
-                    } w-full text-center text-sm text-black`}
+                    } w-full text-center text-xs md:text-sm text-black`}
                   >
                     {s}
                   </div>
@@ -264,10 +268,12 @@ export const Purchase = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-row gap-4	py-8 justify-between">
-            <h2 className="text-5xl font-redhat">226.095,25 €</h2>
-            <div className="h-full flex flex-col  justify-end">
-              <div className="text-lg font-redhat">inkl. mwst.</div>
+          <div className="flex flex-row gap-4 py-6 md:py-8 justify-between items-center">
+            <h2 className="text-2xl md:text-5xl font-redhat">226.095,25 €</h2>
+            <div className="h-full flex flex-col justify-end">
+              <div className="text-sm text-left md:text-lg font-redhat">
+                inkl. mwst.
+              </div>
             </div>
           </div>
 
@@ -277,28 +283,28 @@ export const Purchase = () => {
                 text={isPurchasing ? 'Buying...' : 'Buy now'}
                 disabled={isPurchasing}
                 onClick={handleSubmit}
-                className="w-full "
+                className="w-full"
               />
             ) : (
               <Button
                 text="Connect Wallet to Buy"
                 onClick={login}
-                className="w-full "
+                className="w-full"
               />
             )}
           </div>
         </div>
       </div>
-      <div className="py-24 flex flex-col gap-14 max-w-screen-lg mx-auto w-full">
+      <div className="py-12 md:py-24 flex flex-col gap-8 md:gap-14 max-w-screen-lg mx-auto w-full px-4 md:px-0">
         <div className="flex flex-col gap-4 w-full">
-          <h3 className="text-2xl uppercase  text-[#7A8385] font-haboro">
+          <h3 className="text-xl md:text-2xl uppercase text-[#7A8385] font-haboro">
             prefer a guided experience?
           </h3>
-          <h2 className="text-6xl  uppercase text-[#0C0D0D] font-haboro">
+          <h2 className="text-4xl md:text-6xl uppercase text-[#0C0D0D] font-haboro">
             {`we're here to help`}
           </h2>
         </div>
-        <p className="text-[#0C0D0D] text-xl whitespace-pre-line">
+        <p className="text-[#0C0D0D] text-lg md:text-xl whitespace-pre-line">
           {`Navigating the world of diamond investment should be as seamless as possible. If you'd prefer personalized 
           assistance with your purchase, our team is ready to provide one-on-one support.
           \nFrom connecting your wallet to finalizing your investment, we'll be with you every step of the way.`}
@@ -307,75 +313,75 @@ export const Purchase = () => {
           <Button text="Book Personal Consultation" />
         </Link>
       </div>
-      <div className="py-24 flex flex-col gap-14 max-w-screen-lg mx-auto">
+      <div className="py-12 md:py-24 flex flex-col gap-8 md:gap-14 max-w-screen-lg mx-auto px-4 md:px-0">
         <div className="flex flex-col gap-4">
-          <h3 className="text-2xl uppercase  text-[#7A8385] font-haboro">
+          <h3 className="text-xl md:text-2xl uppercase text-[#7A8385] font-haboro">
             FAQ
           </h3>
           <img src="/title.png" alt="Diamond" className="w-full h-auto" />
           <Accordion
             type="single"
             collapsible
-            className="border-t border-[#0C0D0D] mt-12"
+            className="border-t border-[#0C0D0D] mt-8 md:mt-12"
           >
             <AccordionItem
               value="item-1"
-              className="border-b border-[#0C0D0D] py-4"
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 What payment options are available for minting?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 We accept various cryptocurrency payments including ETH, USDC,
                 and other major cryptocurrencies.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
               value="item-2"
-              className="border-b border-[#0C0D0D] py-4 "
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 Is there a limit on how many NFTs I can mint at once?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 Yes, there are limits to ensure fair distribution and maintain
                 the value of our collection.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
               value="item-3"
-              className="border-b border-[#0C0D0D] py-4"
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 Does the NFT price change with cryptocurrency market
                 fluctuations?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 Our NFT prices are pegged to the physical diamond value and are
                 not directly affected by crypto market volatility.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
               value="item-4"
-              className="border-b border-[#0C0D0D] py-4"
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 How do our diamonds and NFTs stand out from others?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 Our diamonds are GIA-certified, and our NFTs are backed by
                 physical diamonds stored in secure vaults.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
               value="item-5"
-              className="border-b border-[#0C0D0D] py-4"
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 How do we ensure the security and authenticity of our diamonds
                 and NFTs?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 Each diamond is GIA-certified and stored in secure vaults. Our
                 NFTs are minted on a secure blockchain with detailed
                 verification processes.
@@ -383,12 +389,12 @@ export const Purchase = () => {
             </AccordionItem>
             <AccordionItem
               value="item-6"
-              className="border-b border-[#0C0D0D] py-4"
+              className="border-b border-[#0C0D0D] py-3 md:py-4"
             >
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-sm text-left md:text-lg">
                 Where are the diamonds securely stored?
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="text-xs md:text-base">
                 Our diamonds are stored in high-security vaults in Switzerland,
                 insured and regularly audited.
               </AccordionContent>

@@ -325,8 +325,8 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
 
   return (
     <Layout>
-      <div className="flex flex-col lg:flex-row gap-0 p-6 py-24 pr-0 max-w-5xl mx-auto">
-        <div className="flex flex-col gap-12 w-2/3">
+      <div className="flex flex-col lg:flex-row gap-0 p-6 py-24 lg:pr-0 max-w-5xl mx-auto">
+        <div className="flex flex-col gap-12 w-full lg:w-2/3">
           <h1 className="text-2xl leading-6 flex items-center gap-4">
             <Link href={`/profile/${address}`}>
               <img src="/leftCaret.svg" alt="arrow-left" />
@@ -459,7 +459,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
           </div>
         </div>
 
-        <div className="max-w-xl w-1/3">
+        <div className="max-w-xl w-full lg:w-1/3 mt-12 lg:mt-0">
           <Token tokenId={tokenId} />
         </div>
       </div>
