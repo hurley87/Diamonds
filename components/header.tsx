@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <div
-      className="w-full mx-auto flex justify-between p-9 items-center"
+      className="w-full mx-auto flex justify-between items-center px-4 sm:px-6 md:px-9 py-4 sm:py-6 md:py-9"
       style={{
         background: `linear-gradient(
     to bottom, 
@@ -32,31 +32,37 @@ export const Header = () => {
         opacity: 0.3,
       }}
     >
-      <span></span>
+      <span className="w-8 sm:w-12 md:w-16"></span>
       <Link href="/">
-        <Image src="/Logo.svg" alt="Logo" width={164} height={48} />
+        <Image
+          src="/Logo.svg"
+          alt="Logo"
+          width={120}
+          height={35}
+          className="sm:w-[140px] sm:h-[40px] md:w-[164px] md:h-[48px]"
+        />
       </Link>
       {!ready ? null : user ? (
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <div className="uppercase text-[#F5F5F5] cursor-pointer">
+            <div className="uppercase text-[#F5F5F5] cursor-pointer text-sm sm:text-base">
               {formatAddress(address)}
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="bg-[#373B3C] rounded-xl p-6 backdrop-blur-xl font-redhat"
+            className="bg-[#373B3C] rounded-xl p-4 sm:p-6 backdrop-blur-xl font-redhat w-[200px] sm:w-[220px]"
           >
             <DropdownMenuItem asChild>
               <Link
-                className="cursor-pointer text-[#BECBCC] uppercase"
+                className="cursor-pointer text-[#BECBCC] uppercase text-sm sm:text-base"
                 href={`/profile/${address}`}
               >
                 My Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="cursor-pointer text-[#BECBCC] uppercase"
+              className="cursor-pointer text-[#BECBCC] uppercase text-sm sm:text-base"
               onSelect={logout}
             >
               Log out
@@ -66,7 +72,7 @@ export const Header = () => {
       ) : (
         <div
           onClick={login}
-          className="uppercase text-[#F5F5F5] cursor-pointer"
+          className="uppercase text-[#F5F5F5] cursor-pointer text-sm sm:text-base"
         >
           Sign in
         </div>
