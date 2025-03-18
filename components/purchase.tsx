@@ -91,24 +91,29 @@ export const Purchase = () => {
   };
 
   return (
-    <div className="flex flex-col gap-12 py-12 max-w-screen-xl mx-auto">
-      <img src="/steps.png" alt="Diamond" className="w-full h-auto" />
+    <div className="flex flex-col gap-12 py-12 max-w-screen-xl mx-auto font-redhat">
+      <img src="/step3.png" alt="Diamond" className="w-full h-auto" />
       <div className="w-full h-full flex flex-col md:flex-row justify-between gap-24 p-14 bg-[#DFE5E5] rounded-2xl">
         <div className="h-full flex flex-col justify-between w-full">
-          <div className="flex flex-col gap-12">
-            <h1 className="text-4xl text-[#373B3C]">
+          <div className="flex flex-col gap-12 h-full">
+            <h1 className="text-4xl text-[#373B3C] font-haboro uppercase">
               Brilliant, {caratWeight} Carat
             </h1>
             <img src="/buy.png" alt="Diamond" className="w-full h-auto" />
-            <div className="flex gap-2 pt-12 items-center justify-start">
+            <div className="flex gap-2 pt-12 items-center">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <img
-                      src="/exclamationmark.png"
-                      alt="Exclamation"
-                      className="h-4 w-auto"
-                    />
+                    <div className="flex gap-2 items-center">
+                      <img
+                        src="/exclamationmark.png"
+                        alt="Exclamation"
+                        className="h-4 w-auto"
+                      />
+                      <div className="text-left text-[#62696B]">
+                        Certified by GIA
+                      </div>
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>
@@ -121,7 +126,6 @@ export const Purchase = () => {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              <div className="text-left text-[#62696B]">Certified by GIA</div>
             </div>
           </div>
           <div className="h-8"></div>
@@ -261,9 +265,9 @@ export const Purchase = () => {
             </div>
           </div>
           <div className="flex flex-row gap-4	py-8 justify-between">
-            <h2 className="font-serif text-5xl">226.095,25 €</h2>
+            <h2 className="text-5xl font-redhat">226.095,25 €</h2>
             <div className="h-full flex flex-col  justify-end">
-              <div className="text-sm">inkl. mwst.</div>
+              <div className="text-lg font-redhat">inkl. mwst.</div>
             </div>
           </div>
 
@@ -276,28 +280,28 @@ export const Purchase = () => {
                 className="w-full "
               />
             ) : (
-              <Button text="Login" onClick={login} className="w-full " />
+              <Button
+                text="Connect Wallet to Buy"
+                onClick={login}
+                className="w-full "
+              />
             )}
           </div>
         </div>
       </div>
-      <div className="py-24 flex flex-col gap-14 max-w-screen-lg mx-auto">
-        <div className="flex flex-col gap-4">
-          <h3 className="text-2xl uppercase  text-[#7A8385]">
+      <div className="py-24 flex flex-col gap-14 max-w-screen-lg mx-auto w-full">
+        <div className="flex flex-col gap-4 w-full">
+          <h3 className="text-2xl uppercase  text-[#7A8385] font-haboro">
             prefer a guided experience?
           </h3>
-          <h2 className="text-6xl  uppercase text-[#0C0D0D]">
+          <h2 className="text-6xl  uppercase text-[#0C0D0D] font-haboro">
             {`we're here to help`}
           </h2>
         </div>
-        <p className="text-[#0C0D0D] text-xl">
-          {`Navigating the world of diamond investment should be as seamless as
-          possible. If you'd prefer personalized assistance with your purchase,
-          our team is ready to provide one-on-one support.
-          <br />
-          <br />
-          From connecting your wallet to finalizing your investment, we'll be
-          with you every step of the way.`}
+        <p className="text-[#0C0D0D] text-xl whitespace-pre-line">
+          {`Navigating the world of diamond investment should be as seamless as possible. If you'd prefer personalized 
+          assistance with your purchase, our team is ready to provide one-on-one support.
+          \nFrom connecting your wallet to finalizing your investment, we'll be with you every step of the way.`}
         </p>
         <Link href="#">
           <Button text="Book Personal Consultation" />
@@ -305,7 +309,9 @@ export const Purchase = () => {
       </div>
       <div className="py-24 flex flex-col gap-14 max-w-screen-lg mx-auto">
         <div className="flex flex-col gap-4">
-          <h3 className="text-2xl uppercase  text-[#7A8385]">FAQ</h3>
+          <h3 className="text-2xl uppercase  text-[#7A8385] font-haboro">
+            FAQ
+          </h3>
           <img src="/title.png" alt="Diamond" className="w-full h-auto" />
           <Accordion
             type="single"
@@ -316,10 +322,10 @@ export const Purchase = () => {
               value="item-1"
               className="border-b border-[#0C0D0D] py-4"
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 What payment options are available for minting?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 We accept various cryptocurrency payments including ETH, USDC,
                 and other major cryptocurrencies.
               </AccordionContent>
@@ -328,10 +334,10 @@ export const Purchase = () => {
               value="item-2"
               className="border-b border-[#0C0D0D] py-4 "
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 Is there a limit on how many NFTs I can mint at once?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 Yes, there are limits to ensure fair distribution and maintain
                 the value of our collection.
               </AccordionContent>
@@ -340,11 +346,11 @@ export const Purchase = () => {
               value="item-3"
               className="border-b border-[#0C0D0D] py-4"
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 Does the NFT price change with cryptocurrency market
                 fluctuations?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 Our NFT prices are pegged to the physical diamond value and are
                 not directly affected by crypto market volatility.
               </AccordionContent>
@@ -353,10 +359,10 @@ export const Purchase = () => {
               value="item-4"
               className="border-b border-[#0C0D0D] py-4"
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 How do our diamonds and NFTs stand out from others?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 Our diamonds are GIA-certified, and our NFTs are backed by
                 physical diamonds stored in secure vaults.
               </AccordionContent>
@@ -365,11 +371,11 @@ export const Purchase = () => {
               value="item-5"
               className="border-b border-[#0C0D0D] py-4"
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 How do we ensure the security and authenticity of our diamonds
                 and NFTs?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 Each diamond is GIA-certified and stored in secure vaults. Our
                 NFTs are minted on a secure blockchain with detailed
                 verification processes.
@@ -379,10 +385,10 @@ export const Purchase = () => {
               value="item-6"
               className="border-b border-[#0C0D0D] py-4"
             >
-              <AccordionTrigger className="text-2xl">
+              <AccordionTrigger className="text-lg">
                 Where are the diamonds securely stored?
               </AccordionTrigger>
-              <AccordionContent className="text-xl">
+              <AccordionContent>
                 Our diamonds are stored in high-security vaults in Switzerland,
                 insured and regularly audited.
               </AccordionContent>

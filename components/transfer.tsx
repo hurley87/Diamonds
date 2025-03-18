@@ -173,7 +173,7 @@ export const Transfer = ({
   return (
     <Dialog open={showTransfer} onOpenChange={setShowTransfer}>
       <DialogTrigger>
-        <div className="text-center">Transfer diamond</div>
+        <div className="text-center font-redhat">Transfer diamond</div>
       </DialogTrigger>
       <DialogContent
         style={{
@@ -184,11 +184,11 @@ export const Transfer = ({
         }}
       >
         <DialogHeader>
-          <DialogTitle className="text-white text-center">
+          <DialogTitle className="text-white text-center font-redhat">
             Transfer Token
           </DialogTitle>
           <DialogDescription>
-            <div className="w-full flex flex-col gap-6 z-50 pt-6">
+            <div className="w-full flex flex-col gap-6 z-50 pt-6 font-redhat">
               <div className="flex flex-col gap-6">
                 <div className="grid w-full items-center gap-1.5">
                   <Label className="text-white">Wallet Address</Label>

@@ -215,7 +215,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
       <Layout>
         <div className="flex flex-col lg:flex-row gap-0 p-6 pt-24 pb-48 pr-0 max-w-5xl mx-auto">
           <h1
-            className={`${serif.className} text-5xl text-left leading-[64px] uppercase w-full`}
+            className={`font-haboro text-5xl text-left leading-[64px] uppercase w-full`}
           >
             {`thank you for redeeming the diamond.`}
             <br />
@@ -223,7 +223,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
           </h1>
           <div className="flex gap-12 justify-center w-full">
             <div className="flex flex-col gap-12 max-w-lg">
-              <div className="flex flex-col gap-6 text-xl text-[#7A8385]">
+              <div className="flex flex-col gap-8 text-xl text-[#7A8385]">
                 <div>Your diamond is now being prepared for shipment.</div>
                 <div>
                   We will send you an email shortly with the shipment details,
@@ -342,7 +342,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
               <div className="grid w-full items-center gap-1.5">
                 <Input
                   value={firstName}
-                  className="text-[#373B3C] rounded-xl"
+                  className="text-[#373B3C] rounded-xl bg-white"
                   placeholder="First Name"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -350,7 +350,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
               <div className="grid w-full items-center gap-1.5">
                 <Input
                   value={lastName}
-                  className="text-[#373B3C] rounded-xl"
+                  className="text-[#373B3C] rounded-xl bg-white"
                   placeholder="Last Name"
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -359,7 +359,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
             <div className="grid w-full items-center gap-1.5">
               <Input
                 value={street}
-                className="text-[#373B3C] rounded-xl"
+                className="text-[#373B3C] rounded-xl bg-white"
                 placeholder="Street and house number"
                 onChange={(e) => setStreet(e.target.value)}
               />
@@ -367,7 +367,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
             <div className="grid w-full items-center gap-1.5">
               <Input
                 value={unitNumber}
-                className="text-[#373B3C] rounded-xl"
+                className="text-[#373B3C] rounded-xl bg-white"
                 placeholder="Apartment number (optional)"
                 onChange={(e) => setUnitNumber(e.target.value)}
               />
@@ -376,7 +376,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
               <div className="grid w-full items-center gap-1.5">
                 <Input
                   value={postalCode}
-                  className="text-[#373B3C] rounded-xl"
+                  className="text-[#373B3C] rounded-xl bg-white"
                   placeholder="Postal Code"
                   onChange={(e) => setPostalCode(e.target.value)}
                 />
@@ -384,7 +384,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
               <div className="grid w-full items-center gap-1.5">
                 <Input
                   value={city}
-                  className="text-[#373B3C] rounded-xl"
+                  className="text-[#373B3C] rounded-xl bg-white"
                   placeholder="City"
                   onChange={(e) => setCity(e.target.value)}
                 />
@@ -393,7 +393,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
             <div className="grid w-full items-center gap-1.5">
               <Input
                 value={country}
-                className="text-[#373B3C] rounded-xl"
+                className="text-[#373B3C] rounded-xl bg-white"
                 placeholder="Country"
                 onChange={(e) => setCountry(e.target.value)}
               />
@@ -401,7 +401,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
             <div className="grid w-full items-center gap-1.5">
               <Input
                 value={phone}
-                className="text-[#373B3C] rounded-xl"
+                className="text-[#373B3C] rounded-xl bg-white"
                 placeholder="Phone number"
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -409,7 +409,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
             <div className="grid w-full items-center gap-1.5">
               <Input
                 value={email}
-                className="text-[#373B3C] rounded-xl"
+                className="text-[#373B3C] rounded-xl bg-white"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
               />

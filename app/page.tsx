@@ -1,4 +1,3 @@
-import { serif } from '@/app/fonts';
 import { Button } from '@/components/button';
 import Link from 'next/link';
 
@@ -7,7 +6,7 @@ export default function Home() {
     <main className="flex flex-col items-center p-12 gap-24 py-24">
       <div className="w-full">
         <h1
-          className={`${serif.className} text-7xl max-w-3xl mx-auto text-center uppercase leading-[80px] text-white`}
+          className={`font-haboro text-7xl max-w-3xl mx-auto text-center uppercase leading-[80px] text-white`}
         >
           Choose your diamond
         </h1>
@@ -26,7 +25,7 @@ export default function Home() {
             </div>
             <div className="flex justify-between text-center">
               <div className="flex flex-col w-full">
-                <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
+                <p className="text-sm opacity-60 uppercase text-[#0C0E0E] font-redhat">
                   Karat
                 </p>
                 <p className="text-black font-bold">1,01</p>

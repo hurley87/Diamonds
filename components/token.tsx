@@ -41,65 +41,64 @@ export const Token = ({
               rgba(166, 175, 177, 0.3)
             `,
       }}
-      className="flex flex-col w-full p-6 gap-6 rounded-xl"
+      className="flex flex-col w-full p-6 gap-6 rounded-xl relative"
     >
-      <div className="flex flex-col w-full gap-6 relative">
-        {showMetadata && (
-          <div
-            style={{
-              background:
-                'linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(0, 0, 0, 0.61)',
-              backdropFilter: 'blur(80px)',
-            }}
-            className="flex flex-col absolute top-0 w-full h-full bg-black z-10"
-          >
-            <div className="flex justify-end">
-              <X
-                className="cursor-pointer"
-                onClick={() => setShowMetadata(false)}
-                size={24}
-              />
-            </div>
-            <div className="flex flex-col">
-              <h2 className="text-center py-6 font-bold text-lg">Metadata</h2>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between">
-                  <div>Color Grade:</div>
-                  <div>{diamond.colorGrade}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>Carat Weight:</div>
-                  <div>{diamond.caratWeight}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>GIA Number:</div>
-                  <div>{diamond.giaNumber}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>GIA Date:</div>
-                  <div>{diamond.giaDate}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>Measurements:</div>
-                  <div>{diamond.measurements}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>Certificate:</div>
-                  <div>{diamond.certificate}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>Clarity Grade:</div>
-                  <div>{diamond.clarityGrade}</div>
-                </div>
-                <div className="flex justify-between">
-                  <div>Certificate link:</div>
-                  <div>{diamond.certificate}</div>
-                </div>
+      {showMetadata && (
+        <div
+          style={{
+            background:
+              'linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 100%), rgba(0, 0, 0, 0.61)',
+            backdropFilter: 'blur(80px)',
+          }}
+          className="flex flex-col absolute left-0 top-0 w-full h-full bg-black z-10 p-6 rounded-xl backdrop-blur-xl text-white text-xl"
+        >
+          <div className="flex justify-end">
+            <X
+              className="cursor-pointer"
+              onClick={() => setShowMetadata(false)}
+              size={24}
+            />
+          </div>
+          <div className="flex flex-col">
+            <h2 className="text-center sfont-bold text-2xl py-16">Metadata</h2>
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between">
+                <div>Color Grade:</div>
+                <div>{diamond.colorGrade}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Carat Weight:</div>
+                <div>{diamond.caratWeight}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>GIA Number:</div>
+                <div>{diamond.giaNumber}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>GIA Date:</div>
+                <div>{diamond.giaDate}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Measurements:</div>
+                <div>{diamond.measurements}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Certificate:</div>
+                <div>{diamond.certificate}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Clarity Grade:</div>
+                <div>{diamond.clarityGrade}</div>
+              </div>
+              <div className="flex justify-between">
+                <div>Certificate link:</div>
+                <div>{diamond.certificate}</div>
               </div>
             </div>
           </div>
-        )}
-
+        </div>
+      )}
+      <div className="flex flex-col w-full gap-6 relative">
         <img
           className="h-auto w-2/3 mx-auto py-2"
           src="/diamond.png"
@@ -152,19 +151,21 @@ export const Token = ({
         </div>
         <div className="flex gap-6 justify-center">
           <div className="flex gap-2 items-center justify-center">
-            <div className="text-center opacity-50 text-xs">
-              certified by GIA
-            </div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <img
-                    src="/icons/exclamation.svg"
-                    alt="Exclamation"
-                    className="h-4 w-auto"
-                  />
+                  <div className="flex gap-2 items-center justify-center">
+                    <img
+                      src="/icons/exclamation.svg"
+                      alt="Exclamation"
+                      className="h-4 w-auto"
+                    />
+                    <div className="text-center opacity-50 text-xs">
+                      certified by GIA
+                    </div>
+                  </div>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="bg-[#373B3C] text-[#BECBCC] rounded-xl p-4">
                   <p>
                     The Gemological Institute of America (GIA) is a leading
                     authority on diamonds, known for creating the 4Cs (Cut,
@@ -187,7 +188,7 @@ export const Token = ({
           </div>
         </div>
       </div>
-      <p className="text-center text-xl">226.095,25 €</p>
+      <p className="text-center text-xl text-[#7A8385]">226.095,25 €</p>
       {showActions && (
         <div className="flex flex-col gap-4">
           <Link href={`/redeem/${tokenId}`}>

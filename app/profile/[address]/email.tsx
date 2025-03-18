@@ -1,6 +1,5 @@
 'use client';
 import { usePrivy } from '@privy-io/react-auth';
-import { serif } from '@/app/fonts';
 
 export const Email = ({ address }: { address: `0x${string}` }) => {
   const { user, ready } = usePrivy();
@@ -9,5 +8,5 @@ export const Email = ({ address }: { address: `0x${string}` }) => {
 
   if (authAddress !== address || !ready) return null;
 
-  return <h1 className={`text-2xl ${serif.className}`}>{email}</h1>;
+  return <h1 className={`text-2xl font-redhat`}>{email}</h1>;
 };

@@ -45,18 +45,18 @@ export const Header = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="bg-[#373B3C] rounded-xl p-6 backdrop-blur-xl"
+            className="bg-[#373B3C] rounded-xl p-6 backdrop-blur-xl font-redhat"
           >
             <DropdownMenuItem asChild>
               <Link
-                className="cursor-pointer text-[#BECBCC] text-xl uppercase"
+                className="cursor-pointer text-[#BECBCC] uppercase"
                 href={`/profile/${address}`}
               >
                 My Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="cursor-pointer text-[#BECBCC] text-xl uppercase"
+              className="cursor-pointer text-[#BECBCC] uppercase"
               onSelect={logout}
             >
               Log out

@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/button';
 import { usePrivy } from '@privy-io/react-auth';
-import { serif } from '../fonts';
 
 export default function ThanksPage() {
   const { user, login } = usePrivy();
@@ -14,7 +13,7 @@ export default function ThanksPage() {
       <div className="flex flex-col md:flex-row p-6 md:p-24 gap-12 md:gap-24">
         <div className="flex flex-col h-full justify-start">
           <h1
-            className={`text-6xl leading-[120%] w-full max-w-[520px] ${serif.className} uppercase`}
+            className={`text-6xl leading-[120%] w-full max-w-[520px] font-haboro uppercase`}
           >
             Awesome.
             <br />
@@ -23,7 +22,9 @@ export default function ThanksPage() {
         </div>
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-4">
-            <h2 className="text-2xl uppercase text-[#7A8385]">WHAT NOW?</h2>
+            <h2 className="text-2xl uppercase text-[#7A8385] font-haboro">
+              WHAT NOW?
+            </h2>
             <p className="text-xl leading-[40px] max-w-xl opacity-80">
               The digital asset already assigned to your wallet. Consectetur
               adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis
@@ -31,7 +32,9 @@ export default function ThanksPage() {
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <h2 className="text-2xl uppercase text-[#7A8385]">WHAT’S NEXT?</h2>
+            <h2 className="text-2xl uppercase text-[#7A8385] font-haboro">
+              WHAT’S NEXT?
+            </h2>
             <p className="text-xl leading-[40px] max-w-xl opacity-80">
               Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
               turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus
