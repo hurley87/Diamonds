@@ -33,7 +33,7 @@ export default function ThanksPage() {
           </div>
           <div className="flex flex-col gap-3 sm:gap-4">
             <h2 className="text-xl sm:text-2xl uppercase text-[#7A8385] font-haboro">
-              WHAT'S NEXT?
+              WHAT&apos;S NEXT?
             </h2>
             <p className="text-lg sm:text-xl leading-[1.6] sm:leading-[40px] max-w-xl opacity-80">
               Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
