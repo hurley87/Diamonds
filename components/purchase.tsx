@@ -332,8 +332,13 @@ export const Purchase = () => {
                 What payment options are available for minting?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                We accept various cryptocurrency payments including ETH, USDC,
-                and other major cryptocurrencies.
+                We accept all major cryptocurrencies supported by Coinbase
+                Commerce. Payments can be made directly through Coinbase
+                accounts (including fiat payments connected to Coinbase) or via
+                external crypto wallets such as MetaMask. You do not need a
+                Coinbase account to complete a purchase. The minimum purchase
+                amount corresponds to the value of the most affordable diamond
+                available on our platform.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -344,8 +349,9 @@ export const Purchase = () => {
                 Is there a limit on how many NFTs I can mint at once?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Yes, there are limits to ensure fair distribution and maintain
-                the value of our collection.
+                You can mint one NFT per transaction. However, there is no limit
+                on the total number of NFTs you can mint overall—feel free to
+                mint as many as you like, one at a time.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -357,8 +363,11 @@ export const Purchase = () => {
                 fluctuations?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Our NFT prices are pegged to the physical diamond value and are
-                not directly affected by crypto market volatility.
+                Our diamond prices are pegged to a fixed USD/EUR value and do
+                not fluctuate with cryptocurrency market changes. However, since
+                payments are made in crypto, the amount of cryptocurrency
+                required to complete a purchase may vary to match the fixed
+                USD/EUR price.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -369,8 +378,12 @@ export const Purchase = () => {
                 How do our diamonds and NFTs stand out from others?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Our diamonds are GIA-certified, and our NFTs are backed by
-                physical diamonds stored in secure vaults.
+                Each diamond we offer is GIA-certified and uniquely tied to a
+                single NFT, ensuring both physical and digital authenticity. Our
+                NFTs are deployed on Base, Coinbase’s official Layer-2 solution,
+                offering security and scalability. Unlike many other digital
+                assets, our diamonds are physically redeemable—holders can burn
+                the NFT to claim the underlying diamond.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -382,9 +395,12 @@ export const Purchase = () => {
                 and NFTs?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Each diamond is GIA-certified and stored in secure vaults. Our
-                NFTs are minted on a secure blockchain with detailed
-                verification processes.
+                Every diamond is GIA-certified and linked directly to its NFT
+                via metadata that stores the original GIA certificate, creating
+                a secure digital twin. Our smart contracts are audited by
+                leading firms to ensure maximum security. This guarantees the
+                authenticity and traceability of both the physical diamond and
+                its digital counterpart.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -395,8 +411,10 @@ export const Purchase = () => {
                 Where are the diamonds securely stored?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Our diamonds are stored in high-security vaults in Switzerland,
-                insured and regularly audited.
+                All diamonds are stored in insured and audited warehouses. When
+                a customer redeems a diamond by burning the associated NFT, the
+                diamond is securely shipped and fully insured by the luxury
+                logistics provider Ferrari Group.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
