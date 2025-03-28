@@ -378,12 +378,12 @@ export const Purchase = () => {
                 How do our diamonds and NFTs stand out from others?
               </AccordionTrigger>
               <AccordionContent className="text-xs md:text-base">
-                Each diamond we offer is GIA-certified and uniquely tied to a
+                {`Each diamond we offer is GIA-certified and uniquely tied to a
                 single NFT, ensuring both physical and digital authenticity. Our
                 NFTs are deployed on Base, Coinbase's official Layer-2 solution,
                 offering security and scalability. Unlike many other digital
                 assets, our diamonds are physically redeemable—holders can burn
-                the NFT to claim the underlying diamond.
+                the NFT to claim the underlying diamond.`}
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
