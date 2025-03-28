@@ -37,6 +37,8 @@ export const VideoBackground = () => {
             'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)',
         }}
       />
+      {/* White translucent overlay */}
+      <div className="absolute top-0 left-0 w-full h-full bg-white/20" />
     </div>
   );
 };

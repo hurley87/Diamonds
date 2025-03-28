@@ -4,13 +4,13 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="flex flex-col items-center p-4 sm:p-8 md:p-12 gap-12 md:gap-24 py-12 md:py-24">
-      <div className="w-full">
+      <div className="w-full pt-44">
         <h1
-          className={`font-haboro text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto text-center uppercase leading-tight md:leading-[80px] text-white`}
+          className={`font-haboro text-4xl sm:text-5xl md:text-6xl lg:text-[104px] max-w-3xl mx-auto text-center uppercase leading-tight md:leading-[1.3em] text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]`}
         >
           Choose your diamond
         </h1>
-        <div className="flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-32 justify-between mx-auto w-full p-2 sm:p-4 lg:p-16 lg:py-24">
+        <div className="flex flex-col max-w-5xl mx-auto lg:flex-row gap-8 md:gap-16 lg:gap-12 justify-between w-full p-2 lg:py-40">
           <div
             style={{
               background: `
