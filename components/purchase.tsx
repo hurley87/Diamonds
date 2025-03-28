@@ -309,7 +309,7 @@ export const Purchase = () => {
           assistance with your purchase, our team is ready to provide one-on-one support.
           \nFrom connecting your wallet to finalizing your investment, we'll be with you every step of the way.`}
         </p>
-        <Link href="#">
+        <Link target="_blank" href="https://4collection.com/contact/">
           <Button text="Book Personal Consultation" />
         </Link>
       </div>
@@ -380,7 +380,7 @@ export const Purchase = () => {
               <AccordionContent className="text-xs md:text-base">
                 Each diamond we offer is GIA-certified and uniquely tied to a
                 single NFT, ensuring both physical and digital authenticity. Our
-                NFTs are deployed on Base, Coinbase’s official Layer-2 solution,
+                NFTs are deployed on Base, Coinbase's official Layer-2 solution,
                 offering security and scalability. Unlike many other digital
                 assets, our diamonds are physically redeemable—holders can burn
                 the NFT to claim the underlying diamond.

@@ -448,7 +448,7 @@ export const Burn = ({ tokenId }: { tokenId: number }) => {
               </div>
               <p className="text-sm text-[#373B3C]">
                 Note: You can revoke this consent at any time with effect for
-                the future by sending an email to info@4collection.com send.
+                the future by sending an email to info@4collection.com.
               </p>
             </div>
             <Button

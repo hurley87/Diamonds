@@ -17,8 +17,15 @@ export const Footer = () => {
           </Link>
           <div className="flex flex-col sm:flex-row justify-center gap-1 sm:gap-6 text-[#62696B] text-sm sm:text-base text-center">
             <div>© 2024 | 4Collection GmbH</div>
-            <div>Imprint</div>
-            <div>Privacy Policy</div>
+            <Link target="_blank" href="https://4collection.com/imprint">
+              Imprint
+            </Link>
+            <Link
+              target="_blank"
+              href="https://4collection.com/privacy-policy/"
+            >
+              Privacy Policy
+            </Link>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row justify-between w-full gap-6 sm:gap-8">
@@ -27,7 +34,9 @@ export const Footer = () => {
               Telephone
             </div>
             <div className="text-[#62696B] text-sm sm:text-base">
-              +49 89 200 03 0800
+              <Link target="_blank" href="tel:+4989200030800">
+                +49 89 200 03 0800
+              </Link>
             </div>
           </div>
           <div className="flex flex-col gap-2 sm:gap-4 text-center">
@@ -44,7 +53,9 @@ export const Footer = () => {
               E-mail
             </div>
             <div className="text-[#62696B] text-sm sm:text-base">
-              info@4collection.com
+              <Link target="_blank" href="mailto:info@4collection.com">
+                info@4collection.com
+              </Link>
             </div>
           </div>
         </div>
