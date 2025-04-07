@@ -236,7 +236,7 @@ export default function Home() {
           Our trusted partner, Coinbase Commerce, expertly handles all aspects
           of our transactions. From Know Your Costumer (KYC) procedures to
           secure payments and final distribution, our collaboration with the
-          renowned global cryptocurrency leader, Counbase, Inc., ensures
+          renowned global cryptocurrency leader, Coinbase, Inc., ensures
           seamless and reliable service.
         </h2>
       </div>

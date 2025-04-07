@@ -45,7 +45,7 @@ export const Footer = () => {
             </div>
             <div className="text-[#62696B] text-sm sm:text-base">
               4Collection GmbH
-              <br /> Maximilanstraße 2<br /> 80539 München
+              <br /> Maximilianstraße 2<br /> 80539 München
             </div>
           </div>
           <div className="flex flex-col gap-2 sm:gap-4 text-center">
