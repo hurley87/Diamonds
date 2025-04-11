@@ -26,6 +26,10 @@ export const Purchase = () => {
   const [colorGrade, setColorGrade] = useState(colorGradeOptions[0]);
   const [caratWeight, setCaratWeight] = useState(caratWeightOptions[0]);
   const [isPurchasing, setIsPurchasing] = useState(false);
+  const [selectedClarity, setSelectedClarity] = useState<string[]>([
+    'IF',
+    'FL',
+  ]);
   const router = useRouter();
   const clarity = [
     'I1',
@@ -180,14 +184,16 @@ export const Purchase = () => {
                 <div key={c} className="w-full flex flex-col gap-1">
                   <div
                     className={`bg-black ${
-                      clarity.length - 1 === i
+                      selectedClarity.includes(c) || c === 'IF' || c === 'FL'
                         ? 'opacity-100 h-1.5'
                         : 'opacity-40 h-0.5'
                     } w-full`}
                   ></div>
                   <div
                     className={`${
-                      clarity.length - 1 === i ? 'opacity-100' : 'opacity-40'
+                      selectedClarity.includes(c) || c === 'IF' || c === 'FL'
+                        ? 'opacity-100'
+                        : 'opacity-40'
                     } w-full text-center text-xs md:text-sm text-black`}
                   >
                     {c}
