@@ -16,7 +16,7 @@ export const Footer = () => {
             />
           </Link>
           <div className="flex flex-col sm:flex-row justify-center gap-1 sm:gap-6 text-[#62696B] text-sm sm:text-base text-center">
-            <div>© 2024 | 4Collection GmbH</div>
+            <div>© 2025 | 4Collection GmbH</div>
             <Link target="_blank" href="https://4collection.com/imprint">
               Imprint
             </Link>

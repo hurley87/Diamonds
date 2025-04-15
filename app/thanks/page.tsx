@@ -26,9 +26,10 @@ export default function ThanksPage() {
               WHAT NOW?
             </h2>
             <p className="text-lg sm:text-xl leading-[1.6] sm:leading-[40px] max-w-xl opacity-80">
-              The digital asset already assigned to your wallet. Consectetur
-              adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis
-              tellus. Sed dignissim, metus nec fringilla accumsan.
+              {`Your payment is being confirmed (usually takes 5–15 minutes).
+              You’ll receive an email once it’s complete. You can also use the
+              Check out your diamond button to view your purchase. GIA
+              certificate data will be assigned within 24–48 hours.`}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:gap-4">
@@ -36,11 +37,10 @@ export default function ThanksPage() {
               WHAT&apos;S NEXT?
             </h2>
             <p className="text-lg sm:text-xl leading-[1.6] sm:leading-[40px] max-w-xl opacity-80">
-              Qorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-              turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus
-              nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum
-              tellus elit sed risus. Maecenas eget condimentum velit, sit amet
-              feugiat lectus.
+              {`Your diamond now exists as a Digital Twin NFT. It can be stored
+              securely in your custody wallet, kept on the platform, traded on
+              Web3 marketplaces, or redeemed for the physical diamond at any
+              time.`}
             </p>
           </div>
           {address ? (
