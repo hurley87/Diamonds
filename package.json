@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.1",
+    "@headlessui/react": "1.7.18",
     "@irys/sdk": "^0.2.4",
     "@privy-io/react-auth": "latest",
     "@privy-io/server-auth": "^1.7.3",
