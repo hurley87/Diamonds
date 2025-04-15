@@ -6,9 +6,5 @@
     "source.fixAll.eslint": "explicit",
     "source.fixAll.format": "explicit"
   },
-  "prettier.configPath": ".prettierrc.js",
-  "files.exclude": {
-    "**/node_modules": true,
-    "**/.next": true
-  }
+  "prettier.configPath": ".prettierrc.js"
 }

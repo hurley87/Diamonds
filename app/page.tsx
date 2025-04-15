@@ -7,7 +7,7 @@ export default function Home() {
         <h1
           className={`font-haboro text-4xl sm:text-5xl md:text-6xl lg:text-[104px] max-w-3xl mx-auto text-center uppercase leading-tight md:leading-[1.3em] text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]`}
         >
-          Choose your diamond
+          Choose your Diamond
         </h1>
         <DiamondCarousel />
       </div>
