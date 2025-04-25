@@ -19,7 +19,6 @@ import { Button } from './button';
 import { Input } from './ui/input';
 import { Layout } from './layout';
 import { Separator } from '@/components/ui/separator';
-import { serif } from '@/app/fonts';
 import { Checkbox } from '@/components/ui/checkbox';
 
 export const Burn = ({ tokenId }: { tokenId: number }) => {

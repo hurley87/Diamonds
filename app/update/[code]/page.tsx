@@ -14,5 +14,9 @@ export default async function UpdatePage({
     notFound();
   }
 
-  return <Update code={code} />;
+  return (
+    <main className="py-12 md:py-24 w-full">
+      <Update code={code} />
+    </main>
+  );
 }

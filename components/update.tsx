@@ -2,6 +2,9 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getAccessToken } from '@privy-io/react-auth';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export const Update = ({ code }: { code: string }) => {
   const uri = `https://gateway.irys.xyz/mutable/${code}`;
@@ -143,64 +146,68 @@ export const Update = ({ code }: { code: string }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 justify-center max-w-lg mx-auto">
-      <div>
-        <p>GIA Number</p>
-        <input
-          value={giaNumber}
-          onChange={(e) => setGiaNumber(e.target.value)}
-          className="text-white"
-        />
-      </div>
-      <div>
-        <p>GIA Date</p>
-        <input
-          value={giaDate}
-          onChange={(e) => setGiaDate(e.target.value)}
-          className="text-white"
-        />
-      </div>
-      <div>
-        <p>Measurements</p>
-        <input
-          value={measurements}
-          onChange={(e) => setMeasurements(e.target.value)}
-          className="text-white"
-        />
-      </div>
-      <div>
-        <p>Certificate</p>
-        <input
-          value={certificate}
-          onChange={(e) => setCertificate(e.target.value)}
-          className="text-white w-full"
-        />
-      </div>
-      <div>
-        <p>Clarity Grade</p>
-        <select
-          value={clarityGrade}
-          onChange={(e) => setClarityGrade(e.target.value)}
-          className="text-white"
-        >
-          <option value="IF">IF</option>
-          <option value="VVS1">VVS1</option>
-          <option value="VVS2">VVS2</option>
-          <option value="VS1">VS1</option>
-          <option value="VS2">VS2</option>
-          <option value="SI1">SI1</option>
-          <option value="SI2">SI2</option>
-          <option value="I1">I1</option>
-        </select>
-      </div>
-      <div>
-        <button
-          disabled={isUpdating}
-          className="bg-white rounded-sm text-black px-2 disabled:opacity-50"
-          onClick={handleUpdate}
-        >
+    <div className="max-w-lg mx-auto p-6 bg-card rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold mb-6 text-foreground">
+        Update Diamond
+      </h1>
+      <div className="grid gap-4">
+        <div className="grid gap-2">
+          <Label htmlFor="giaNumber">GIA Number</Label>
+          <Input
+            id="giaNumber"
+            value={giaNumber}
+            onChange={(e) => setGiaNumber(e.target.value)}
+            placeholder="Enter GIA Number"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="giaDate">GIA Date</Label>
+          <Input
+            id="giaDate"
+            type="date"
+            value={giaDate}
+            onChange={(e) => setGiaDate(e.target.value)}
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="measurements">Measurements</Label>
+          <Input
+            id="measurements"
+            value={measurements}
+            onChange={(e) => setMeasurements(e.target.value)}
+            placeholder="e.g. 6.5 x 6.5 x 4.0 mm"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="certificate">Certificate</Label>
+          <Input
+            id="certificate"
+            value={certificate}
+            onChange={(e) => setCertificate(e.target.value)}
+            placeholder="Certificate link or number"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="clarityGrade">Clarity Grade</Label>
+          <select
+            id="clarityGrade"
+            value={clarityGrade}
+            onChange={(e) => setClarityGrade(e.target.value)}
+            className="flex h-10 w-full border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            <option value="IF">IF</option>
+            <option value="VVS1">VVS1</option>
+            <option value="VVS2">VVS2</option>
+            <option value="VS1">VS1</option>
+            <option value="VS2">VS2</option>
+            <option value="SI1">SI1</option>
+            <option value="SI2">SI2</option>
+            <option value="I1">I1</option>
+          </select>
+        </div>
+        <Button onClick={handleUpdate} disabled={isUpdating} className="mt-4">
           {isUpdating ? 'Updating...' : 'Update'}
-        </button>
+        </Button>
       </div>
     </div>
   );
