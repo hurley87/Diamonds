@@ -22,19 +22,20 @@ export const Update = ({ code }: { code: string }) => {
       const response = await fetch(uri);
       const data = await response.json();
       const attributes = data.attributes || [];
-      const giaNumber = attributes.find(
+      console.log(attributes);
+      const giaNumber = attributes?.find(
         (attr: any) => attr.trait_type === 'GIA Number'
       );
-      const giaDate = attributes.find(
+      const giaDate = attributes?.find(
         (attr: any) => attr.trait_type === 'GIA Date'
       );
-      const measurements = attributes.find(
+      const measurements = attributes?.find(
         (attr: any) => attr.trait_type === 'Measurements'
       );
-      const certificate = attributes.find(
+      const certificate = attributes?.find(
         (attr: any) => attr.trait_type === 'Certificate'
       );
-      const clarityGrade = attributes.find(
+      const clarityGrade = attributes?.find(
         (attr: any) => attr.trait_type === 'Clarity Grade'
       );
       setGiaNumber(giaNumber?.value || '');
@@ -122,10 +123,14 @@ export const Update = ({ code }: { code: string }) => {
       attributes: newAttributes,
     };
 
+    console.log(metadata);
+
     const body = JSON.stringify({
       code,
       metadata,
     });
+
+    console.log(body);
 
     const authToken = await getAccessToken();
 
