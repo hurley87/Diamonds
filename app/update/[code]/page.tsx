@@ -1,4 +1,5 @@
 import { Update } from '@/components/update';
+import { getUri } from '@/utils/view-tokens';
 import { notFound } from 'next/navigation';
 
 interface UpdatePageProps {
@@ -14,9 +15,13 @@ export default async function UpdatePage({
     notFound();
   }
 
+  const uri = await getUri(Number(code));
+
+  console.log(uri);
+
   return (
     <main className="py-12 md:py-24 w-full">
-      <Update code={code} />
+      <Update uri={uri as string} />
     </main>
   );
 }

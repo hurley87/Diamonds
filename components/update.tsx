@@ -1,13 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getAccessToken } from '@privy-io/react-auth';
+import { getAccessToken, usePrivy } from '@privy-io/react-auth';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-export const Update = ({ code }: { code: string }) => {
-  const uri = `https://gateway.irys.xyz/mutable/${code}`;
+export const Update = ({ uri }: { uri: string }) => {
+  const { user } = usePrivy();
+  const address = user?.wallet?.address as `0x${string}`;
   const [diamond, setDiamond] = useState<any>({});
   const [isUpdating, setIsUpdating] = useState(false);
   const [giaNumber, setGiaNumber] = useState('');
@@ -125,6 +126,8 @@ export const Update = ({ code }: { code: string }) => {
 
     console.log(metadata);
 
+    const code = uri.split('/')[4];
+
     const body = JSON.stringify({
       code,
       metadata,
@@ -144,7 +147,7 @@ export const Update = ({ code }: { code: string }) => {
         body,
       });
 
-      router.push('/');
+      router.push(`/profile/${address}`);
     } catch {
       setIsUpdating(false);
     }

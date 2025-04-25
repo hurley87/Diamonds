@@ -113,7 +113,7 @@ export const Token = ({
             <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
               Clarity
             </p>
-            <p className="text-black font-bold">IF</p>
+            <p className="text-black font-bold">IF/FL</p>
           </div>
           <div className="flex flex-col w-full">
             <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Color</p>
@@ -123,19 +123,19 @@ export const Token = ({
         <div className="flex justify-between text-center">
           <div className="flex flex-col w-full">
             <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Cut</p>
-            <p className="text-black font-bold">exzellent</p>
+            <p className="text-black font-bold">excellent</p>
           </div>
           <div className="flex flex-col w-full">
             <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
               Symmetry
             </p>
-            <p className="text-black font-bold">exzellent</p>
+            <p className="text-black font-bold">excellent</p>
           </div>
           <div className="flex flex-col w-full">
             <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">
               Polish
             </p>
-            <p className="text-black font-bold">exzellent</p>
+            <p className="text-black font-bold">excellent</p>
           </div>
         </div>
         <div className="flex gap-5 justify-center">
