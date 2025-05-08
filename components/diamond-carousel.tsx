@@ -38,7 +38,7 @@ const diamonds = [
   {
     gradient:
       'linear-gradient(0deg, rgba(166, 175, 177, 0.3), rgba(166, 175, 177, 0.3)), linear-gradient(180deg, rgba(93, 83, 0, 0) 47.4%, rgba(177, 68, 0, 0.18) 94.4%)',
-    karat: '1,01',
+    karat: '3,01',
     clarity: 'IF/FL',
     color: 'D',
     cut: 'excellent',
@@ -48,7 +48,7 @@ const diamonds = [
   {
     gradient:
       'linear-gradient(0deg, rgba(166, 175, 177, 0.3), rgba(166, 175, 177, 0.3)), linear-gradient(180deg, rgba(91, 20, 76, 0) 47.4%, rgba(91, 20, 76, 0.18) 94.4%)',
-    karat: '1,01',
+    karat: '5,01',
     clarity: 'IF/FL',
     color: 'D',
     cut: 'excellent',

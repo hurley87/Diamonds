@@ -106,7 +106,7 @@ export const Token = ({
         />
         <div className="flex justify-between text-center">
           <div className="flex flex-col w-full">
-            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Karat</p>
+            <p className="text-sm opacity-60 uppercase text-[#0C0E0E]">Carat</p>
             <p className="text-black font-bold">1,01</p>
           </div>
           <div className="flex flex-col w-full">

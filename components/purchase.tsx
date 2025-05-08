@@ -22,7 +22,7 @@ export const Purchase = () => {
   const id = user?.wallet?.address as `0x${string}`;
   const email = user?.email?.address;
   const colorGradeOptions = ['D', 'E', 'F', 'G'];
-  const caratWeightOptions = ['0.30', '0.50', '1.01', '3.01', '5.01'];
+  const caratWeightOptions = ['0.3', '0.5', '1.01', '3.01', '5.01'];
   const [colorGrade, setColorGrade] = useState(colorGradeOptions[0]);
   const [caratWeight, setCaratWeight] = useState(caratWeightOptions[0]);
   const [isPurchasing, setIsPurchasing] = useState(false);

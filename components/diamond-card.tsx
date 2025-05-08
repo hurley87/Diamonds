@@ -33,7 +33,7 @@ export function DiamondCard({
       <div className="flex justify-between text-center">
         <div className="flex flex-col w-full">
           <p className="text-xs sm:text-sm opacity-60 uppercase text-[#0C0E0E] font-redhat">
-            Karat
+            Carat
           </p>
           <p className="text-sm sm:text-base text-black font-bold">{karat}</p>
         </div>
