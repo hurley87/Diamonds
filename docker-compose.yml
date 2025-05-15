@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_HOST: ${NEXT_PUBLIC_HOST}
+        NEXT_PUBLIC_RPC_URL: ${NEXT_PUBLIC_RPC_URL}
+        NEXT_PUBLIC_CONTRACT_ADDRESS: ${NEXT_PUBLIC_CONTRACT_ADDRESS}
+        NEXT_PUBLIC_EXPLOER_URL: ${NEXT_PUBLIC_EXPLOER_URL}
+        NEXT_PUBLIC_PRIVY_APP_ID: ${NEXT_PUBLIC_PRIVY_APP_ID}
+        NEXT_PUBLIC_COINBASE_APP_ID: ${NEXT_PUBLIC_COINBASE_APP_ID}
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - internal
+      - public
+
+networks:
+  public: { }
+  internal: { }

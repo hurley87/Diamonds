@@ -1,13 +1,17 @@
 import { createWalletClient, http, createPublicClient, Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import contractAbi from './DiamondCollection.json';
-const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`;
 import Irys from '@irys/sdk';
 import { chain } from '@/constants/chain';
 
-const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}` as Hex);
-const network = process.env.IRYS_NETWORK;
 const providerUrl = process.env.NEXT_PUBLIC_RPC_URL;
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x`;
+
+function getAccount() {
+  const privateKey = process.env.PRIVATE_KEY;
+  if (!privateKey) throw new Error('Missing PRIVATE_KEY env variable');
+  return privateKeyToAccount(`0x${privateKey}` as Hex);
+}
 
 export const publicClient = createPublicClient({
   chain,
@@ -20,12 +24,19 @@ const walletClient = createWalletClient({
 });
 
 export const getIrys = async () => {
+  const network = process.env.IRYS_NETWORK;
+  const privateKey = process.env.PRIVATE_KEY;
+
+  if (!network || !privateKey) {
+    throw new Error('Missing IRYS_NETWORK or PRIVATE_KEY env variable');
+  }
+
   const token = 'base-eth';
 
   const irys = new Irys({
     network,
     token,
-    key: process.env.PRIVATE_KEY,
+    key: privateKey,
     config: { providerUrl },
   });
 
@@ -33,6 +44,8 @@ export const getIrys = async () => {
 };
 
 export async function mintNft(toAddress: `0x${string}`, uri: string) {
+  const account = getAccount();
+
   try {
     const { request }: any = await publicClient.simulateContract({
       account,
@@ -51,6 +64,8 @@ export async function mintNft(toAddress: `0x${string}`, uri: string) {
 }
 
 export async function deposit(address: `0x${string}`) {
+  const account = getAccount();
+
   const hash = await walletClient.sendTransaction({
     account,
     to: address,
